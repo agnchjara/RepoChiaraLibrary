@@ -1,0 +1,3 @@
+First Application
+
+adesso provo a modificare qualcosa per vedere se vengono aggiunte le modifiche alla staging area.
