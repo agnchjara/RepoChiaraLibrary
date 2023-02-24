@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Library>
+  <Users>
+    <User UserId="1" Role="Admin" Username="administrator" Password="admin1" />
+    <User UserId="2" Role="StandardUser" Username="bob" Password="userBob" />
+    <User UserId="3" Role="StandardUser" Username="alice" Password="userAlice" />
+  </Users>
+  <Books>
+    <Book BookId="1" Title="Harry Potter and the Philosopher's Stone" AuthorName="J. K." AuthorSurname="Rowling" Publisher="Bloomsbury" Quantity="1" IsDeleted="false" />
+    <Book BookId="2" Title="Harry Potter and the Chamber of Secrets" AuthorName="J. K." AuthorSurname="Rowling" Publisher="Bloomsbury" Quantity="1" IsDeleted="false" />
+    <Book BookId="3" Title="Forse" AuthorName="Forse" AuthorSurname="Forse" Publisher="Forse" Quantity="1" IsDeleted="true" />
+    <Book BookId="4" Title="Forse" AuthorName="Altro" AuthorSurname="Forse" Publisher="Forse" Quantity="1" IsDeleted="false" />
+    <Book BookId="5" Title="Le Rouge et le noir" AuthorName="Henry Beyle" AuthorSurname="Stendhal" Publisher="A. Levasseur" Quantity="1" IsDeleted="false" />
+  </Books>
+  <Reservations>
+    <Reservation ReservationId="1" BookId="2" UserId="1" StartDate="2023-01-18" EndDate="" />
+  </Reservations>
+</Library>

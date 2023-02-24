@@ -1,0 +1,23 @@
+C:\Users\chiara.agnello\Desktop\MATERIALE STUDIO\Progetto Biblioteca\Solution.Library\ConsoleApp.Library\bin\Debug\ConsoleApp.Library.exe.config
+C:\Users\chiara.agnello\Desktop\MATERIALE STUDIO\Progetto Biblioteca\Solution.Library\ConsoleApp.Library\bin\Debug\ConsoleApp.Library.exe
+C:\Users\chiara.agnello\Desktop\MATERIALE STUDIO\Progetto Biblioteca\Solution.Library\ConsoleApp.Library\bin\Debug\ConsoleApp.Library.pdb
+C:\Users\chiara.agnello\Desktop\MATERIALE STUDIO\Progetto Biblioteca\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.csproj.AssemblyReference.cache
+C:\Users\chiara.agnello\Desktop\MATERIALE STUDIO\Progetto Biblioteca\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.csproj.SuggestedBindingRedirects.cache
+C:\Users\chiara.agnello\Desktop\MATERIALE STUDIO\Progetto Biblioteca\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.csproj.CoreCompileInputs.cache
+C:\Users\chiara.agnello\Desktop\MATERIALE STUDIO\Progetto Biblioteca\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.exe
+C:\Users\chiara.agnello\Desktop\MATERIALE STUDIO\Progetto Biblioteca\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.pdb
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\bin\Debug\ConsoleApp.Library.exe.config
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\bin\Debug\ConsoleApp.Library.exe
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\bin\Debug\ConsoleApp.Library.pdb
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\bin\Debug\BusinessLogic.Library.dll
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\bin\Debug\DataAccessLayer.Library.dll
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\bin\Debug\Model.Library.dll
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\bin\Debug\BusinessLogic.Library.pdb
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\bin\Debug\DataAccessLayer.Library.pdb
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\bin\Debug\Model.Library.pdb
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.csproj.AssemblyReference.cache
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.csproj.SuggestedBindingRedirects.cache
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.csproj.CoreCompileInputs.cache
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.csproj.CopyComplete
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.exe
+C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.pdb
