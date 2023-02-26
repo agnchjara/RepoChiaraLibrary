@@ -117,7 +117,41 @@ namespace DataAccessLayer.Library.EntitiesDB
 
         public Book UpdateBook(int bookId, Book bookWithNewValues)
         {
-            throw new NotImplementedException();  //stored procedure con UPDATE, SET, WHERE
+            using(SqlConnection conn = DBConnectionProva.GetSqlConnection())
+            {
+                using(SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = @"up_UpdateBook";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    SqlParameter _bookId = new SqlParameter("BookId", System.Data.SqlDbType.Int);
+                    _bookId.Value = bookId;
+                    cmd.Parameters.Add(_bookId);
+                    SqlParameter title = new SqlParameter("Title", System.Data.SqlDbType.VarChar, 350);
+                    title.Value = bookWithNewValues.Title;
+                    cmd.Parameters.Add(title);
+                    SqlParameter authorName = new SqlParameter("AuthorName", System.Data.SqlDbType.VarChar, 200);
+                    authorName.Value = bookWithNewValues.AuthorName;
+                    cmd.Parameters.Add(authorName);
+                    SqlParameter authorSurname = new SqlParameter("AuthorSurname", System.Data.SqlDbType.VarChar, 200);
+                    authorSurname.Value = bookWithNewValues.AuthorSurname;
+                    cmd.Parameters.Add(authorSurname);
+                    SqlParameter publisher = new SqlParameter("Publisher", System.Data.SqlDbType.VarChar, 200);
+                    publisher.Value = bookWithNewValues.PublishingHouse;
+                    cmd.Parameters.Add(publisher);
+                    SqlParameter quantity = new SqlParameter("Quantity", System.Data.SqlDbType.Int);
+                    quantity.Value = bookWithNewValues.Quantity;
+                    cmd.Parameters.Add(quantity);
+                    SqlParameter isDeleted = new SqlParameter("IsDeleted", System.Data.SqlDbType.Bit);
+                    isDeleted.Value = bookWithNewValues.IsDeleted;
+                    cmd.Parameters.Add(isDeleted);
+
+                    cmd.ExecuteNonQuery();
+
+                    conn.Close();
+                }
+            }
+            return bookWithNewValues; 
         }
     }
 }

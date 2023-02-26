@@ -109,9 +109,10 @@ namespace BusinessLogic.Library
         }
         public Reservation CreateReservation(ReservationViewModel reservationViewModel)
         {
-            //List<Book> books = Repository.ReadAllBooks();
             Reservation reservation = ReservationMapper.MapViewModelToReservation(reservationViewModel);
+
             #region Assegnazione ID Reservation + Diminuzione Book.Quantity -1 (PER XML)
+            //List<Book> books = Repository.ReadAllBooks();
             //Reservation reservation = ReservationMapper.MapViewModelToReservation(reservationViewModel);
             //List<Reservation> fetchedReservations = Repository.GetReservations();
             //int querySetId = fetchedReservations.Select(r => r.ID).DefaultIfEmpty(0).Max() + 1;
@@ -290,7 +291,9 @@ namespace BusinessLogic.Library
 
         public ReservationResult ReserveBook(int bookId, int userId)
         {
-            
+            ReservationViewModel reservationViewModel = new ReservationViewModel();
+
+            CreateReservation(reservationViewModel)
         }
 
     }

@@ -275,7 +275,7 @@ namespace ConsoleApp.Library
                             if (isThisBookAvailable.IsAvailable == true)
                             {
                                 Console.WriteLine("The book's available, let's reserve it! ");
-                                = lbl.ReserveBook(isThisBookAvailable.ID, user.ID);
+                                ReservationResult reservationResult = lbl.ReserveBook(isThisBookAvailable.ID, user.ID);
                             }
                         }
                         else
