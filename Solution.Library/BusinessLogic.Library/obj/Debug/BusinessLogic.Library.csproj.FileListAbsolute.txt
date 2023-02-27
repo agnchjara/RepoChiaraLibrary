@@ -15,3 +15,14 @@ C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Lib
 C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\BusinessLogic.Library\obj\Debug\BusinessLogic.Library.csproj.CopyComplete
 C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\BusinessLogic.Library\obj\Debug\BusinessLogic.Library.dll
 C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\BusinessLogic.Library\obj\Debug\BusinessLogic.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\BusinessLogic.Library\bin\Debug\BusinessLogic.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\BusinessLogic.Library\bin\Debug\BusinessLogic.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\BusinessLogic.Library\bin\Debug\DataAccessLayer.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\BusinessLogic.Library\bin\Debug\Model.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\BusinessLogic.Library\bin\Debug\DataAccessLayer.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\BusinessLogic.Library\bin\Debug\Model.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\BusinessLogic.Library\obj\Debug\BusinessLogic.Library.csproj.AssemblyReference.cache
+C:\Users\Public\RepoChiara\Solution.Library\BusinessLogic.Library\obj\Debug\BusinessLogic.Library.csproj.CoreCompileInputs.cache
+C:\Users\Public\RepoChiara\Solution.Library\BusinessLogic.Library\obj\Debug\BusinessLogic.Library.csproj.CopyComplete
+C:\Users\Public\RepoChiara\Solution.Library\BusinessLogic.Library\obj\Debug\BusinessLogic.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\BusinessLogic.Library\obj\Debug\BusinessLogic.Library.pdb

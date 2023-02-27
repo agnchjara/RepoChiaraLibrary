@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,13 +23,17 @@ namespace BusinessLogic.Library.Mappers
         }
         public static Reservation MapViewModelToReservation(ReservationViewModel reservationViewModel)
         {
+            DateTime startDate = DateTime.Today;
+          
+            DateTime endDate = startDate.AddDays(30);
+
             Reservation reservation = new Reservation()
             {
                 User = reservationViewModel.User,
                 Book = reservationViewModel.Book,
-                StartDate = reservationViewModel.StartDate,
-                EndDate = reservationViewModel.EndDate,
-            };
+                StartDate = DateTime.Today,
+                EndDate = endDate
+        };
             return reservation;
         }
     }

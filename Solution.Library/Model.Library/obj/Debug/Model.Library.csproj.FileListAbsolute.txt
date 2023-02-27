@@ -10,3 +10,9 @@ C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Lib
 C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\Model.Library\obj\Debug\Model.Library.csproj.CoreCompileInputs.cache
 C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\Model.Library\obj\Debug\Model.Library.dll
 C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Library\Model.Library\obj\Debug\Model.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\Model.Library\bin\Debug\Model.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\Model.Library\bin\Debug\Model.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\Model.Library\obj\Debug\Model.Library.csproj.AssemblyReference.cache
+C:\Users\Public\RepoChiara\Solution.Library\Model.Library\obj\Debug\Model.Library.csproj.CoreCompileInputs.cache
+C:\Users\Public\RepoChiara\Solution.Library\Model.Library\obj\Debug\Model.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\Model.Library\obj\Debug\Model.Library.pdb

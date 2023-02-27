@@ -36,7 +36,7 @@ namespace BusinessLogic.Library
         {
             var fetchedUSers = Repository.ReadAllUsers();
 
-            User utente = Repository.Login(loginVM.Username, loginVM.Password, fetchedUSers);
+            User utente = Login(loginVM.Username, loginVM.Password, fetchedUSers);
 
             if (utente != null)
             {
@@ -47,6 +47,11 @@ namespace BusinessLogic.Library
                 return null;
             }
 
+        }
+        public User Login(string username, string password, List<User> users)
+        {
+            User userForLogin = users.Where(x => x.Username == username && x.Password == password).SingleOrDefault();
+            return userForLogin;
         }
         public Book AddBook(BookViewModel bookViewModel)
         {
@@ -151,7 +156,8 @@ namespace BusinessLogic.Library
             {
                 filteredBooks = filteredBooks.Where(x => x.PublishingHouse == bookToSearch.PublishingHouse).ToList();
             }
-
+            
+            
             return filteredBooks;
 
         }
@@ -289,11 +295,15 @@ namespace BusinessLogic.Library
             return bookWithAvailabilityInfos;
         }
 
-        public ReservationResult ReserveBook(int bookId, int userId)
+        public ReservationViewModel ReserveBook(int bookId, int userId)
         {
             ReservationViewModel reservationViewModel = new ReservationViewModel();
+            reservationViewModel.Book.ID = bookId;
+            reservationViewModel.User.ID = userId;
 
-            CreateReservation(reservationViewModel)
+            Reservation resToCreate = CreateReservation(reservationViewModel);
+            ReservationViewModel resCreated = ReservationMapper.MapReservationToViewModel(resToCreate);
+            return resCreated;
         }
 
     }

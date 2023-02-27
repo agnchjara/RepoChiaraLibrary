@@ -61,12 +61,6 @@ namespace DataAccessLayer.Library
             return users;
         }
 
-        public User ReadUsernamePassword(string username, string password, List<User> users)
-        {
-            User userForLogin = users.Where(x => x.Username == username && x.Password == password).SingleOrDefault();
-            return userForLogin;
-        }
-
         public User UpdateUser()
         {
             throw new NotImplementedException();

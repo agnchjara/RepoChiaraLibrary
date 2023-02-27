@@ -14,7 +14,7 @@ namespace DataAccessLayer.Library
     public interface IRepository
     {
         List<User> ReadAllUsers();
-        User Login(string username, string password, List<User> users);
+        //User Login(string username, string password, List<User> users);
 
         List<Book> ReadAllBooks();
         Book CreateBook(Book book);

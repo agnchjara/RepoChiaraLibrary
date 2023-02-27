@@ -16,7 +16,7 @@ namespace Model.Library
         public string PublishingHouse { get; set; } 
 
         /// <summary>
-        /// rappresenta il numero di copie acquistate dalla biblioteca
+        /// rappresenta il numero di duplicati disponibili per la prenotazione
         /// </summary>
         public int Quantity { get; set; } 
 

@@ -20,9 +20,9 @@ namespace BusinessLogic.Library
         bool DeleteBook(BookViewModel book);
         //StandardUser GetUserByUserName(string userName); questo forse è quello che ho chiamato "CheckIfAdmin"
         Reservation CreateReservation(ReservationViewModel reservation);
-        ReservationResult ReserveBook(int bookId, int userId);
+        ReservationViewModel ReserveBook(int bookId, int userId);
 
-        //ReservationResult ReturnBook(int bookId, int userId);
+        //ReservationViewModel ReturnBook(int bookId, int userId);
         List<ReservationViewModel> GetReservationHistoryForAdmin(UserViewModel userViewModel, SearchBookViewModel bookToReserve, ReservationStatus? reservationStatus);
         List<ReservationViewModel> GetReservationsHistoryForStandardUser(SearchBookViewModel bookToReserve, ReservationStatus reservationStatus);
         BookWithAvailabilityVM SearchBookWithAvailabilityInfos(BookViewModel book);

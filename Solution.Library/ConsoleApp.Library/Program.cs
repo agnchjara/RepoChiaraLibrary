@@ -25,7 +25,6 @@ namespace ConsoleApp.Library
             bool endApp = false;
             do
             {
-
                 Console.WriteLine("*************************************************");
                 Console.WriteLine("**                                             **");
                 Console.WriteLine("**           INTERNATIONAL LIBRARY             **");
@@ -74,20 +73,10 @@ namespace ConsoleApp.Library
                         endApp = true;
                     if (choice == "y")
                         endApp = false;
-
                 }
-                
                 
             } while (endApp == false);
 
-            
-           
-            //LoginViewModel lvm = new LoginViewModel(username, password);
-             
-            //var userExist = libraryBusinessLogic.LoginUserCheck(lvm, listaUtentiXml);
-
-            //userViewModel -> oggetto per fare il check su cosa può fare l'utente.
-            //gli if non li facciamo in base allo user, ma allo user del view model.
         }
     }
 }

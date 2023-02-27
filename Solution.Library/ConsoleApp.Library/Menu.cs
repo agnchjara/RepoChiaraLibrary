@@ -154,8 +154,21 @@ namespace ConsoleApp.Library
                         BookViewModel searchedBook = lbl.SearchBook(bookVMToSearch).FirstOrDefault();
                         if (searchedBook != null)
                         {
-                            lbl.SearchBookWithAvailabilityInfos(searchedBook);
-                            
+                            //Valuta la disponibilità del libro. 
+                            BookWithAvailabilityVM isThisBookAvailable = lbl.SearchBookWithAvailabilityInfos(searchedBook);
+
+                            if (isThisBookAvailable.IsAvailable == true)
+                            {
+                                ReservationViewModel resCreated = lbl.ReserveBook(isThisBookAvailable.ID, user.ID);
+                                Console.WriteLine("You have reserved this book.");
+                            }
+                            else
+                            {
+                                //1. Il libro ha già una disponibilità attiva dall'utente => reservation is not possible
+
+                                //2. Il libro non è disponibile.
+                                Console.WriteLine("The book is not available. The first availability date is "+ isThisBookAvailable.FirstAvailabilityDate + ".");
+                            }
                         }
                         else
                         {
@@ -191,8 +204,8 @@ namespace ConsoleApp.Library
                         Console.WriteLine("Reservation status (press the corresponding number): \n1. active \n2. not active. ");
                         string resStatus = Console.ReadLine();
                         ReservationStatus reservationStatus = (ReservationStatus)Enum.Parse(typeof(ReservationStatus), resStatus);
-                        List<ReservationViewModel> result = lbl.GetReservationHistoryForAdmin(userViewModel, bookVMToSearch, reservationStatus);
-                        foreach(ReservationViewModel res in result)
+                        List<BusinessLogic.Library.ReservationViewModel> result = lbl.GetReservationHistoryForAdmin(userViewModel, bookVMToSearch, reservationStatus);
+                        foreach(BusinessLogic.Library.ReservationViewModel res in result)
                         {
                             res.ToString();  //così però non mostra se la res è active/notActive
                         }
@@ -249,39 +262,44 @@ namespace ConsoleApp.Library
                         Console.WriteLine("Enter the book's info you'd like to reserve");
                         Console.WriteLine("Title: ");
                         string title = Console.ReadLine();
-                        while (!string.IsNullOrEmpty(title))
+                        while (string.IsNullOrEmpty(title))
                         { Console.WriteLine("\nTitle cannot be empty. Reenter the title, please: "); }
                         Console.WriteLine("Author Name: ");
                         string authorName = Console.ReadLine();
-                        while (!string.IsNullOrEmpty(authorName))
+                        while (string.IsNullOrEmpty(authorName))
                         { Console.WriteLine("\nAuthor Name cannot be empty. Reenter the name, please: "); }
                         Console.WriteLine("Author Surname: ");
                         string authorSurname = Console.ReadLine();
-                        while (!string.IsNullOrEmpty(authorSurname))
+                        while (string.IsNullOrEmpty(authorSurname))
                         { Console.WriteLine("\nAuthor Surname cannot be empty. Reenter the surname, please: "); }
                         Console.WriteLine("Publisher: ");
                         string publisher = Console.ReadLine();
-                        while (!string.IsNullOrEmpty(publisher))
+                        while (string.IsNullOrEmpty(publisher))
                         { Console.WriteLine("\nPublisher cannot be empty. Reenter the publisher, please: "); }
                         SearchBookViewModel bookVMToSearch = new SearchBookViewModel(title, authorName, authorSurname, publisher);
-                        var result = lbl.SearchBook(bookVMToSearch).SingleOrDefault();
+                        BookViewModel result = lbl.SearchBook(bookVMToSearch).SingleOrDefault();
 
                         if (result != null)
                         {
                             //Valuta la disponibilità del libro. 
                             BookWithAvailabilityVM isThisBookAvailable = lbl.SearchBookWithAvailabilityInfos(result);
 
-                            //Il libro ha già una disponibilità attiva dall'utente <= IMPLEMENTA
                             if (isThisBookAvailable.IsAvailable == true)
                             {
-                                Console.WriteLine("The book's available, let's reserve it! ");
-                                ReservationResult reservationResult = lbl.ReserveBook(isThisBookAvailable.ID, user.ID);
+                                ReservationViewModel resCreated  = lbl.ReserveBook(isThisBookAvailable.ID, user.ID);
+                                Console.WriteLine("You have reserved this book.");
+                            }
+                            else
+                            {
+                                //1. Il libro ha già una disponibilità attiva dall'utente => reservation is not possible
+
+                                //2. Il libro non è disponibile. 
+                                Console.WriteLine("The book is not available. The first availability date is " + isThisBookAvailable.FirstAvailabilityDate + ".");
                             }
                         }
                         else
                         {
                             Console.WriteLine("The book you requested doesn't exist. Sorry!");
-
                         }
 
                     } break;

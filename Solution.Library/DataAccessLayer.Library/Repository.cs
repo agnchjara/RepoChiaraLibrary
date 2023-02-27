@@ -28,11 +28,11 @@ namespace DataAccessLayer.Library
             return _IuserDAO.ReadAllUsers();
         }
 
-        public User Login(string username, string password, List<User> users)
-        {
-            User _user = _IuserDAO.ReadUsernamePassword(username, password, users);
-            return _user;
-        }
+        //public User Login(string username, string password, List<User> users)
+        //{
+        //    User _user = _IuserDAO.ReadUsernamePassword(username, password, users);
+        //    return _user;
+        //}
         public List<Book> ReadAllBooks()
         {
             return _IbookDAO.ReadAllBooks();
