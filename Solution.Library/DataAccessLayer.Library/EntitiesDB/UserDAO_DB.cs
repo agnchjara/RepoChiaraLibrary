@@ -40,7 +40,7 @@ namespace DataAccessLayer.Library
                     while (reader.Read())
                     {
                         int id = Int32.Parse(reader["UserId"].ToString());
-                        enumRole Role = (enumRole)Enum.Parse(typeof(enumRole), reader["Role"].ToString());
+                        Role Role = (Role)Enum.Parse(typeof(Role), reader["UserRole"].ToString());
                         string username = reader["Username"].ToString();
                         string password = reader["Password"].ToString();
 

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
-using BusinessLogic.Library;
+﻿using BusinessLogic.Library;
 using BusinessLogic.Library.ViewModels;
-//using DataAccessLayer.Library;
-//using Model.Library;
-//using Model.Library.InterfacesDAO;
+using DataAccessLayer.Library;
+using DataAccessLayer.Library.EntitiesDB;
+using Model.Library.InterfacesDAO;
+using System;
 
 namespace ConsoleApp.Library
 {
@@ -16,11 +11,11 @@ namespace ConsoleApp.Library
     {
         static void Main(string[] args)
         {
-            //IBookDAO BookDAO = new BookDAO();
-            //IUserDAO UserDAO = new UserDAO();
-            //IReservationDAO reservationDAO = new ReservationDAO();
-            //IRepository repository = new Repository(BookDAO, UserDAO,reservationDAO);
-            LibraryBusinessLogic libraryBL = new LibraryBusinessLogic(); //qui arg "repository"
+            IBookDAO BookDAO = new BookDAO_DB();
+            IUserDAO UserDAO = new UserDAO_DB();
+            IReservationDAO reservationDAO = new ReservationDAO_DB();
+            IRepository repository = new Repository(BookDAO, UserDAO, reservationDAO);
+            LibraryBusinessLogic libraryBL = new LibraryBusinessLogic(repository);
 
             bool endApp = false;
             do
@@ -47,20 +42,20 @@ namespace ConsoleApp.Library
                     Username = userUsername,
                     Password = userPassword
                 };
-                
+
                 UserViewModel loggedInUser = libraryBL.Login(loginVM);
                 if (loggedInUser != null)
                 {
                     LoginUI.SuccessfulLogin();
-                    
+
                     if (loggedInUser.Role == Role.Admin)
                     {
-                        Menu menuAdmin = new Menu();
+                        Menu menuAdmin = new Menu(repository);
                         menuAdmin.MenuAdmin(loggedInUser);
                     }
                     else
                     {
-                        Menu menuStandardUser = new Menu();
+                        Menu menuStandardUser = new Menu(repository);
                         menuStandardUser.MenuStandardUser(loggedInUser, loggedInUser.Username);
                     }
                 }
@@ -68,13 +63,13 @@ namespace ConsoleApp.Library
                 {
                     LoginUI.LoginFailure();
                     Console.WriteLine("Do you want to try again? \nPress 'y' to enter your credentials again, press 'n' if you want to quit.");
-                    string choice= Console.ReadLine();
+                    string choice = Console.ReadLine();
                     if (choice == "n")
                         endApp = true;
                     if (choice == "y")
                         endApp = false;
                 }
-                
+
             } while (endApp == false);
 
         }

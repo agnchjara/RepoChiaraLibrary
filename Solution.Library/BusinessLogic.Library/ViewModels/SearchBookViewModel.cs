@@ -20,5 +20,7 @@ namespace BusinessLogic.Library.VieModels
             AuthorSurname = authorSurname;
             PublishingHouse = publishingHouse;
         }
+
+        public SearchBookViewModel() { }
     }
 }

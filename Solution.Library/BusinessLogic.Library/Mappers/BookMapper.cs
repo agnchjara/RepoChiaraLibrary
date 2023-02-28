@@ -52,12 +52,25 @@ namespace BusinessLogic.Library.Mappers
             return bookViewModel;
         }
 
+        public static SearchBookViewModel BookVMToSearchBookVM(BookViewModel bookViewModel)
+        {
+            SearchBookViewModel searchBookViewModel = new SearchBookViewModel()
+            {
+                Title = bookViewModel.Title,
+                AuthorName = bookViewModel.AuthorName,
+                AuthorSurname = bookViewModel.AuthorSurname,
+                PublishingHouse = bookViewModel.PublishingHouse,
+            };
+            return searchBookViewModel;
+        }
+
         public static BookWithAvailabilityVM BookViewModelToAvailability(BookViewModel bookViewModel, IEnumerable<Reservation> reservationList)
         {
             DateTime? firstAvailabilityDate = DateTime.Now;
+
             bool availability = true;
 
-            if (reservationList.Where(r => r.Book.ID == bookViewModel.ID && r.EndDate > DateTime.Today).Count() >= bookViewModel.Quantity)
+            if ((reservationList.Where(r => r.Book.ID == bookViewModel.ID && r.EndDate > DateTime.Today).Count() >= bookViewModel.Quantity) && bookViewModel.IsDeleted != true)
             {
                 availability = false;
                 firstAvailabilityDate = reservationList.Where(r => r.Book.ID == bookViewModel.ID && r.EndDate > DateTime.Today).OrderBy(r => r.EndDate).FirstOrDefault().EndDate;

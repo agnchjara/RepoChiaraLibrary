@@ -1,12 +1,9 @@
 ﻿using Model.Library;
 using Model.Library.InterfacesDAO;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.Library.EntitiesDB
 {
@@ -15,7 +12,7 @@ namespace DataAccessLayer.Library.EntitiesDB
         public Book CreateBook(Book book)
         {
             SqlConnection conn = DBConnectionProva.GetSqlConnection();
-            
+
             try
             {
                 string sqlText = "INSERT INTO Books (Title, AuthorName, AuthorSurname, Publisher, Quantity, IsDeleted)" +
@@ -41,7 +38,7 @@ namespace DataAccessLayer.Library.EntitiesDB
             book.ID = id;
             conn.Close();
             return book;
-            
+
         }
 
         public bool DeleteBook(Book book)
@@ -49,14 +46,14 @@ namespace DataAccessLayer.Library.EntitiesDB
             bool delete = true;
             using (SqlConnection conn = DBConnectionProva.GetSqlConnection())
             {
-                using(SqlCommand cmd = new SqlCommand())
+                using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = @"up_DeleteBook";
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                     SqlParameter id = new SqlParameter("BookId", System.Data.SqlDbType.Int);
-                    id.Value = book.ID; 
+                    id.Value = book.ID;
                     cmd.Parameters.Add(id);
 
                     cmd.ExecuteNonQuery();
@@ -70,7 +67,7 @@ namespace DataAccessLayer.Library.EntitiesDB
                     conn.Close();
                     return delete;
                 }
-            } 
+            }
         }
 
         public List<Book> ReadAllBooks()
@@ -88,7 +85,7 @@ namespace DataAccessLayer.Library.EntitiesDB
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     //ora bisogna leggere i dati. Li legge in sequenza 
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         int id = Int32.Parse(reader["BookId"].ToString());
                         string title = reader["Title"].ToString();
@@ -107,19 +104,22 @@ namespace DataAccessLayer.Library.EntitiesDB
                             PublishingHouse = publisher,
                             Quantity = quantity,
                             IsDeleted = isDeleted
-                        }; 
+                        };
                         books.Add(book);
 
-                    } reader.Close();
-                } conn.Close();
-            } return books;
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return books;
         }
 
         public Book UpdateBook(int bookId, Book bookWithNewValues)
         {
-            using(SqlConnection conn = DBConnectionProva.GetSqlConnection())
+            using (SqlConnection conn = DBConnectionProva.GetSqlConnection())
             {
-                using(SqlCommand cmd = new SqlCommand())
+                using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.CommandText = @"up_UpdateBook";
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -151,7 +151,7 @@ namespace DataAccessLayer.Library.EntitiesDB
                     conn.Close();
                 }
             }
-            return bookWithNewValues; 
+            return bookWithNewValues;
         }
     }
 }

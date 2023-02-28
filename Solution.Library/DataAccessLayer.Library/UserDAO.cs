@@ -58,7 +58,7 @@ namespace DataAccessLayer.Library
                 user.ID = int.Parse(node.Attribute("UserId").Value);
                 user.Username = node.Attribute("Username").Value;
                 user.Password = node.Attribute("Password").Value;
-                user.Role = (enumRole)Enum.Parse(typeof(enumRole), node.Attribute("Role").Value);
+                user.Role = (Role)Enum.Parse(typeof(Role), node.Attribute("Role").Value);
 
                 result.Add(user);
             }

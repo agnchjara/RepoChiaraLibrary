@@ -16,7 +16,7 @@ namespace BusinessLogic.Library
         UserViewModel Login(LoginViewModel loginVM);
         Book AddBook(BookViewModel book); 
         List<BookViewModel> SearchBook(SearchBookViewModel book);
-        BookViewModel UpdateBook(BookViewModel bookWithNewValues); 
+        BookViewModel UpdateBook(BookViewModel bookToSearch, BookViewModel bookWithNewValues); 
         bool DeleteBook(BookViewModel book);
         //StandardUser GetUserByUserName(string userName); questo forse è quello che ho chiamato "CheckIfAdmin"
         Reservation CreateReservation(ReservationViewModel reservation);

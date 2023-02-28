@@ -14,7 +14,7 @@ namespace Model.Library
         public int ID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }   
-        public enumRole Role { get; set; }
+        public Role Role { get; set; }
 
         public User()
         { }
@@ -27,7 +27,7 @@ namespace Model.Library
 
     }
 
-    public enum enumRole
+    public enum Role
     {
         Admin,
         StandardUser

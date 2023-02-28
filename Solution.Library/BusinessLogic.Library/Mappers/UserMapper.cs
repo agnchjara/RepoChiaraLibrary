@@ -17,7 +17,7 @@ namespace BusinessLogic.Library.Mappers
                 ID = user.ID,
                 Username = user.Username,
                 Password = user.Password,
-                Role = user.Role == enumRole.Admin ? Role.Admin : Role.StandardUser
+                Role = user.Role == Model.Library.Role.Admin ? ViewModels.Role.Admin : ViewModels.Role.StandardUser
             };
             return userViewModel;
         }
@@ -28,7 +28,7 @@ namespace BusinessLogic.Library.Mappers
                 ID = userViewModel.ID,
                 Username = userViewModel.Username,
                 Password = userViewModel.Password,
-                Role = (enumRole)(userViewModel.Role == Role.Admin ? Role.Admin : Role.StandardUser)
+                Role = (Model.Library.Role)(userViewModel.Role == ViewModels.Role.Admin ? ViewModels.Role.Admin : ViewModels.Role.StandardUser)
             };
             return user;
         }

@@ -3,6 +3,9 @@ using BusinessLogic.Library.Entities;
 using BusinessLogic.Library.Mappers;
 using BusinessLogic.Library.VieModels;
 using BusinessLogic.Library.ViewModels;
+using DataAccessLayer.Library;
+using DataAccessLayer.Library.EntitiesDB;
+using Model.Library.InterfacesDAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +14,17 @@ namespace ConsoleApp.Library
 {
     public class Menu
     {
-        public LibraryBusinessLogic lbl = new LibraryBusinessLogic();
-        public Menu()
+
+        public static IBookDAO bookDAO = new BookDAO_DB();
+        public static IUserDAO userDAO = new UserDAO_DB();
+        public static IReservationDAO reservationDAO = new ReservationDAO_DB();
+        public static IRepository repository = new Repository(bookDAO, userDAO, reservationDAO);
+        public LibraryBusinessLogic lbl = new LibraryBusinessLogic(repository);
+        public Menu(IRepository repository)
         {
-            lbl = new LibraryBusinessLogic();
+            lbl = new LibraryBusinessLogic(repository);
         }
-    
+
 
         //public ILibraryBusinessLogic Lbl { get; set; }
         public void MenuAdmin(UserViewModel user)
@@ -82,7 +90,7 @@ namespace ConsoleApp.Library
                         Console.WriteLine("Enter the Publisher: ");
                         string publisher = Console.ReadLine();
                         SearchBookViewModel bookVM = new SearchBookViewModel(title, authorName, authorSurname, publisher);
-                        var foundBook = lbl.SearchBook(bookVM);
+                        BookViewModel foundBook = lbl.SearchBook(bookVM).SingleOrDefault();
 
                         Console.WriteLine("Now enter the new values. \nTitle: ");
                         string newTitle = Console.ReadLine();
@@ -93,7 +101,7 @@ namespace ConsoleApp.Library
                         Console.WriteLine("Publisher: ");
                         string newPublisher = Console.ReadLine();
                         BookViewModel newBookVM = new BookViewModel(newTitle, newAuthorName, newAuthorSurname, newPublisher);
-                        BookViewModel updatedBook = lbl.UpdateBook(newBookVM);
+                        BookViewModel updatedBook = lbl.UpdateBook(foundBook, newBookVM);
 
                         if (updatedBook != null)
                         {
@@ -277,7 +285,7 @@ namespace ConsoleApp.Library
                         while (string.IsNullOrEmpty(publisher))
                         { Console.WriteLine("\nPublisher cannot be empty. Reenter the publisher, please: "); }
                         SearchBookViewModel bookVMToSearch = new SearchBookViewModel(title, authorName, authorSurname, publisher);
-                        BookViewModel result = lbl.SearchBook(bookVMToSearch).SingleOrDefault();
+                        BookViewModel result = lbl.SearchBook(bookVMToSearch).SingleOrDefault(); 
 
                         if (result != null)
                         {

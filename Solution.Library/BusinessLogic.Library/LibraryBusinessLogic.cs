@@ -1,37 +1,24 @@
-﻿using Model.Library;
+﻿using BusinessLogic.Library.Entities;
+using BusinessLogic.Library.Mappers;
+using BusinessLogic.Library.VieModels;
+using BusinessLogic.Library.ViewModels;
+using DataAccessLayer.Library;
+using Model.Library;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataAccessLayer.Library;
-using Model.Library.InterfacesDAO;
-using BusinessLogic.Library.VieModels;
-using BusinessLogic.Library.Mappers;
-using System.ComponentModel;
-using BusinessLogic.Library.ViewModels;
-using BusinessLogic.Library.Entities;
-using DataAccessLayer.Library.EntitiesDB;
 
 namespace BusinessLogic.Library
 {
     public class LibraryBusinessLogic : ILibraryBusinessLogic
     {
-        public Repository Repository { get; set; }       //era IRepository prima
+        public IRepository Repository { get; set; }
 
-        public LibraryBusinessLogic(Repository repository)
+        public LibraryBusinessLogic(IRepository repository)
         {
             Repository = repository;
         }
-        public LibraryBusinessLogic()
-        {
-            IBookDAO bookDAO = new BookDAO_DB();
-            IUserDAO userDAO = new UserDAO();
-            IReservationDAO reservationDAO = new ReservationDAO(bookDAO, userDAO);
-            Repository = new Repository(bookDAO, userDAO, reservationDAO);
 
-        }
         public UserViewModel Login(LoginViewModel loginVM)
         {
             var fetchedUSers = Repository.ReadAllUsers();
@@ -53,46 +40,48 @@ namespace BusinessLogic.Library
             User userForLogin = users.Where(x => x.Username == username && x.Password == password).SingleOrDefault();
             return userForLogin;
         }
-        public Book AddBook(BookViewModel bookViewModel)
+        public Book AddBook(BookViewModel bookViewModelToAdd)
         {
-            Book book = BookMapper.MapViewModeltoBook(bookViewModel);
-            List<Book> fetchAllBooks = Repository.ReadAllBooks();
-            var fetchedBook = fetchAllBooks.FirstOrDefault(x => x.Title == book.Title &&
-                x.AuthorName == book.AuthorName &&
-                x.AuthorSurname == book.AuthorSurname
-                && x.PublishingHouse == book.PublishingHouse);
+            SearchBookViewModel searchBookViewModel = BookMapper.BookVMToSearchBookVM(bookViewModelToAdd);
+            List<BookViewModel> fetchedBooks = SearchBook(searchBookViewModel);
+            //List<Book> fetchAllBooks = Repository.ReadAllBooks();
+            //var fetchedBook = fetchAllBooks.FirstOrDefault(x => x.Title == book.Title &&
+            //    x.AuthorName == book.AuthorName &&
+            //    x.AuthorSurname == book.AuthorSurname
+            //    && x.PublishingHouse == book.PublishingHouse);
 
-            if (fetchAllBooks.Count() == 0)
+            if (fetchedBooks.Count() == 0)
             {
-                book.ID = 1;
+                bookViewModelToAdd.ID = 1;
+                Book book = BookMapper.MapViewModeltoBook(bookViewModelToAdd);
                 Repository.CreateBook(book);
-
+                return book;
             }
             else // (fetchAllBooks != null)
             {
-                if (fetchedBook == book)
+                if (fetchedBooks.FirstOrDefault() == bookViewModelToAdd)
                 {
-                    book.Quantity += fetchedBook.Quantity;
-                    BookViewModel fetchedBookToVM = BookMapper.MapBookToViewModel(fetchedBook);
-                    BookViewModel bookToVM = BookMapper.MapBookToViewModel(book);
-                    UpdateBook(bookToVM);
+                    bookViewModelToAdd.Quantity += bookViewModelToAdd.Quantity;
+                    Book book = BookMapper.MapViewModeltoBook(UpdateBook(fetchedBooks.FirstOrDefault(), bookViewModelToAdd));
+                    return book;
                 }
                 else // (fetchedBook == null)
                 {
                     //Le 3 righe successive usate per l'XML
                     //int setId = fetchAllBooks.Select(b => b.ID).DefaultIfEmpty(0).Max() + 1;
                     //book.ID = setId;
+                    Book book = BookMapper.MapViewModeltoBook(bookViewModelToAdd);
                     Repository.CreateBook(book);
+                    return book;
                 }
             }
-            return book;
-
+            
         }
-        public BookViewModel UpdateBook(BookViewModel bookWithNewValues)
+        public BookViewModel UpdateBook(BookViewModel foundBook, BookViewModel bookWithNewValues)
         {
             List<Book> bookResult = Repository.ReadAllBooks();
 
-            Book toModify = bookResult.FirstOrDefault(x => x.ID == bookWithNewValues.ID);
+            Book toModify = bookResult.FirstOrDefault(x => x.ID == foundBook.ID);
 
 
 
@@ -133,7 +122,7 @@ namespace BusinessLogic.Library
             #endregion
 
             return Repository.CreateReservation(reservation);
-            
+
         }
         private List<Book> SearchBooks(SearchBookViewModel bookToSearch)
         {
@@ -156,8 +145,12 @@ namespace BusinessLogic.Library
             {
                 filteredBooks = filteredBooks.Where(x => x.PublishingHouse == bookToSearch.PublishingHouse).ToList();
             }
-            
-            
+
+            foreach (Book book in filteredBooks)
+            {
+                filteredBooks.Where(b => b.IsDeleted != true).ToList();
+            }
+
             return filteredBooks;
 
         }
@@ -170,15 +163,20 @@ namespace BusinessLogic.Library
         /// <exception cref="NotImplementedException"></exception>
         public List<BookViewModel> SearchBook(SearchBookViewModel bookToSearch)
         {
-            List<BookViewModel> results = new List<BookViewModel>();
 
             List<Book> books = SearchBooks(bookToSearch);
-
+            List<BookViewModel> results = new List<BookViewModel>();
             foreach (Book book in books)
             {
-                var bvm = BookMapper.MapBookToViewModel(book);
-                results.Add(bvm);
+                BookViewModel b = BookMapper.MapBookToViewModel(book);
+                results.Add(b);
             }
+
+            //foreach (Book book in books)
+            //{
+            //    var bvm = BookMapper.MapBookToViewModel(book);
+            //    results.Add(bvm);
+            //}
 
 
             return results;
@@ -241,7 +239,7 @@ namespace BusinessLogic.Library
             {
                 filteredReservations = filteredReservations.Where(x => reservationStatus == GetReservationStatus(x)).ToList();
             }
-            
+
             return filteredReservations;
 
         }
@@ -273,7 +271,7 @@ namespace BusinessLogic.Library
             //   GetReservationStatus(item); 
             //}
             //////Ritorna una lista di reservation di questo libro active alla data di oggi
-            ////List<Reservation> reservedBooks = fetchedReservations.Where(r => r.ID == bookViewModel.ID && r.StartDate < DateTime.Today && r.EndDate > DateTime.Today).ToList();
+            ////List<Reservation> reservedBooks = fetchedReservations.Where(r => r.ID == bookViewModelToAdd.ID && r.StartDate < DateTime.Today && r.EndDate > DateTime.Today).ToList();
             ////foreach (Reservation res in reservedBooks)
             ////{
             ////    if (res.EndDate == null)
@@ -281,7 +279,7 @@ namespace BusinessLogic.Library
             ////}
 
             //////Ritorna una lista con le reservation di questo libro che saranno active nel futuro
-            ////List<Reservation> reservedBooksInTheFuture = fetchedReservations.Where(r => r.ID == bookViewModel.ID && r.StartDate > DateTime.Today).ToList();
+            ////List<Reservation> reservedBooksInTheFuture = fetchedReservations.Where(r => r.ID == bookViewModelToAdd.ID && r.StartDate > DateTime.Today).ToList();
             ////foreach (Reservation res in reservedBooksInTheFuture)
             ////{
             ////    if (res.StartDate > DateTime.Today)
@@ -291,7 +289,7 @@ namespace BusinessLogic.Library
 
             ////}
             #endregion
-     
+
             return bookWithAvailabilityInfos;
         }
 
