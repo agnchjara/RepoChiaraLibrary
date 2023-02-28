@@ -45,7 +45,7 @@ namespace BusinessLogic.Library
         #endregion
         public override string ToString()
         {
-            return $"{this.Title}, {this.AuthorName} {this.AuthorSurname}, {this.PublishingHouse}.";
+            return $"Title: {this.Title} \nAuthor Name: {this.AuthorName} \nAuthor Surname: {this.AuthorSurname} \nPublisher: {this.PublishingHouse} \nQuantity: {this.Quantity} \nDeleted: {this.IsDeleted}.";
         }
     }
 }

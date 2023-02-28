@@ -146,10 +146,10 @@ namespace BusinessLogic.Library
                 filteredBooks = filteredBooks.Where(x => x.PublishingHouse == bookToSearch.PublishingHouse).ToList();
             }
 
-            foreach (Book book in filteredBooks)
-            {
-                filteredBooks.Where(b => b.IsDeleted != true).ToList();
-            }
+            //foreach (Book book in filteredBooks)
+            //{
+            //    filteredBooks.Where(b => b.IsDeleted != true).ToList();
+            //}
 
             return filteredBooks;
 

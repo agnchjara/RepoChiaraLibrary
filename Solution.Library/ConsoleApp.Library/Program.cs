@@ -43,21 +43,28 @@ namespace ConsoleApp.Library
                     Password = userPassword
                 };
 
+                
                 UserViewModel loggedInUser = libraryBL.Login(loginVM);
                 if (loggedInUser != null)
                 {
                     LoginUI.SuccessfulLogin();
+                    do
+                    {
+                        if (loggedInUser.Role == Role.Admin)
+                        {
+                            Menu menuAdmin = new Menu(repository);
+                            menuAdmin.MenuAdmin(loggedInUser);
 
-                    if (loggedInUser.Role == Role.Admin)
-                    {
-                        Menu menuAdmin = new Menu(repository);
-                        menuAdmin.MenuAdmin(loggedInUser);
-                    }
-                    else
-                    {
-                        Menu menuStandardUser = new Menu(repository);
-                        menuStandardUser.MenuStandardUser(loggedInUser, loggedInUser.Username);
-                    }
+                        }
+                        else
+                        {
+                            Menu menuStandardUser = new Menu(repository);
+                            menuStandardUser.MenuStandardUser(loggedInUser, loggedInUser.Username);
+                        }
+
+                        
+                    } while (endApp == false);
+                    //endApp = true;
                 }
                 else
                 {

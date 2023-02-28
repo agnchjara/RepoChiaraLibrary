@@ -9,6 +9,7 @@ using Model.Library.InterfacesDAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 
 namespace ConsoleApp.Library
 {
@@ -25,10 +26,12 @@ namespace ConsoleApp.Library
             lbl = new LibraryBusinessLogic(repository);
         }
 
+        //public static bool EndApp { get; set; }
 
         //public ILibraryBusinessLogic Lbl { get; set; }
         public void MenuAdmin(UserViewModel user)
         {
+            Console.WriteLine("  ");
             Console.WriteLine("Hello Admin, what do you want to do?");
             // Creazione di un libro
             Console.WriteLine("1. Add a new book.");
@@ -61,6 +64,7 @@ namespace ConsoleApp.Library
             {
                 case "1":
                     {
+                        Console.WriteLine("  ");
                         Console.WriteLine("Enter the title:");
                         string title = Console.ReadLine();
                         Console.WriteLine("Enter the Author first name:");
@@ -71,16 +75,18 @@ namespace ConsoleApp.Library
                         string publishingHouse = Console.ReadLine();
                         Console.WriteLine("How many copies? ");
                         int quantity;
-                        while (!int.TryParse(Console.ReadLine(), out quantity)) 
+                        while (!int.TryParse(Console.ReadLine(), out quantity))
                         { Console.WriteLine("\nReenter the quantity, please: "); }
                         BookViewModel bookViewModel = new BookViewModel(title, authorName, authorSurname, publishingHouse, quantity);
                         lbl.AddBook(bookViewModel);
 
                         Console.WriteLine("The book has been successfully added! \n ");
-                        
-                    } break;
+
+                    }
+                    break;
                 case "2":
                     {
+                        Console.WriteLine("  ");
                         Console.WriteLine("Enter the Title:");
                         string title = Console.ReadLine();
                         Console.WriteLine("Enter the Author firs name: ");
@@ -91,11 +97,11 @@ namespace ConsoleApp.Library
                         string publisher = Console.ReadLine();
                         SearchBookViewModel bookVM = new SearchBookViewModel(title, authorName, authorSurname, publisher);
                         BookViewModel foundBook = lbl.SearchBook(bookVM).SingleOrDefault();
-
+                        Console.WriteLine("  ");
                         Console.WriteLine("Now enter the new values. \nTitle: ");
                         string newTitle = Console.ReadLine();
                         Console.WriteLine("Author first name: ");
-                        string newAuthorName = Console.ReadLine(); 
+                        string newAuthorName = Console.ReadLine();
                         Console.WriteLine("Author last name: ");
                         string newAuthorSurname = Console.ReadLine();
                         Console.WriteLine("Publisher: ");
@@ -110,10 +116,12 @@ namespace ConsoleApp.Library
                         else
                             Console.WriteLine("Something went wrong.");
 
-                    } break;
+                    }
+                    break;
                 case "3":
                     {
                         //Delete di un libro
+                        Console.WriteLine("  ");
                         Console.WriteLine("What's the Book you'd like to delete? Enter the book information. \nTitle:");
                         string title = Console.ReadLine();
                         Console.WriteLine("Author First Name: ");
@@ -126,10 +134,12 @@ namespace ConsoleApp.Library
                         BookViewModel searchedBook = lbl.SearchBook(bookVMToSearch).FirstOrDefault();
                         lbl.DeleteBook(searchedBook);
 
-                    } break;
+                    }
+                    break;
                 case "4":
                     {
                         //Ricerca di un libro
+                        Console.WriteLine("  ");
                         Console.WriteLine("What book are you looking for? \nTitle:");
                         string title = Console.ReadLine();
                         Console.WriteLine("Author First Name: ");
@@ -138,19 +148,31 @@ namespace ConsoleApp.Library
                         string authorSurname = Console.ReadLine();
                         Console.WriteLine("Publishing house: ");
                         string publisher = Console.ReadLine();
-                        SearchBookViewModel bookVMToSearch = new SearchBookViewModel(title, authorName, authorSurname, publisher );
-                        List<BookViewModel> results= lbl.SearchBook(bookVMToSearch);
-                        foreach (BookViewModel bookvm in results)
-                        {
-                            Console.WriteLine(bookvm.ToString());
-                        }
-                        
+                        Console.WriteLine("  ");
+                        SearchBookViewModel bookVMToSearch = new SearchBookViewModel(title, authorName, authorSurname, publisher);
+                        List<BookViewModel> results = lbl.SearchBook(bookVMToSearch);
 
-                    }break;
+                        if (results == null)  //STA ROBA NON FUNZIONA
+                        {
+                            Console.WriteLine("This book doesn't exists.");
+                        }
+                        else
+                        {
+                            foreach (BookViewModel bookvm in results)
+                            {
+                                Console.WriteLine(bookvm.ToString());
+                                //Sarebbe carino qui mostrare i dati del BookWithAvailabilityVM con la firstAvailabilityDate4
+                            }
+                        }
+
+
+                    }
+                    break;
                 case "5":
                     {
                         //Prenotazione di un libro
-                        Console.WriteLine("Enter the book's info you'd like to reserve. \n Title: ");
+                        Console.WriteLine("  ");
+                        Console.WriteLine("Enter the book's info you'd like to reserve. \nTitle: ");
                         string title = Console.ReadLine();
                         Console.WriteLine("Author First Name: ");
                         string authorName = Console.ReadLine();
@@ -175,7 +197,7 @@ namespace ConsoleApp.Library
                                 //1. Il libro ha già una disponibilità attiva dall'utente => reservation is not possible
 
                                 //2. Il libro non è disponibile.
-                                Console.WriteLine("The book is not available. The first availability date is "+ isThisBookAvailable.FirstAvailabilityDate + ".");
+                                Console.WriteLine("The book is not available. The first availability date is " + isThisBookAvailable.FirstAvailabilityDate + ".");
                             }
                         }
                         else
@@ -189,10 +211,12 @@ namespace ConsoleApp.Library
                     {
                         //Restituzione di un libro
 
-                    }break;
+                    }
+                    break;
                 case "7":
                     {
                         //Visualizza storico prenotazioni
+                        Console.WriteLine("  ");
                         Console.WriteLine("Enter the reservation's information. \nUsername: ");
                         string username = Console.ReadLine();
                         UserViewModel userViewModel = new UserViewModel()
@@ -213,7 +237,7 @@ namespace ConsoleApp.Library
                         string resStatus = Console.ReadLine();
                         ReservationStatus reservationStatus = (ReservationStatus)Enum.Parse(typeof(ReservationStatus), resStatus);
                         List<BusinessLogic.Library.ReservationViewModel> result = lbl.GetReservationHistoryForAdmin(userViewModel, bookVMToSearch, reservationStatus);
-                        foreach(BusinessLogic.Library.ReservationViewModel res in result)
+                        foreach (BusinessLogic.Library.ReservationViewModel res in result)
                         {
                             res.ToString();  //così però non mostra se la res è active/notActive
                         }
@@ -223,18 +247,21 @@ namespace ConsoleApp.Library
                     {
                         //Quit the program
                         Console.WriteLine("Goodbye, see you soon!");
+                        Console.ReadKey();
                         Environment.Exit(0);
-
-                    } break;
+                        //EndApp = true;
+                    }
+                    break;
                 default:
                     Console.WriteLine("Something went wrong.");
                     break;
-            }    
+            }
         }
 
         public void MenuStandardUser(UserViewModel user, string username)
         {
-            Console.WriteLine("Hello "+username+", what would you like to do?");
+            Console.WriteLine("  ");
+            Console.WriteLine("Hello " + username + ", what would you like to do?");
             // Ricerca 
             Console.WriteLine("1. Search a book.");
             // Prenotazione di un libro
@@ -250,6 +277,7 @@ namespace ConsoleApp.Library
                 case "1":
                     {
                         //Ricerca di un libro
+                        Console.WriteLine("  ");
                         Console.WriteLine("What book are you looking for? \nTitle:");
                         string title = Console.ReadLine();
                         Console.WriteLine("Author First Name: ");
@@ -260,13 +288,23 @@ namespace ConsoleApp.Library
                         string publisher = Console.ReadLine();
                         SearchBookViewModel bookVMToSearch = new SearchBookViewModel(title, authorName, authorSurname, publisher);
                         List<BookViewModel> results = lbl.SearchBook(bookVMToSearch);
-                        foreach (BookViewModel bookvm in results)
+                        if (results == null)  //STA ROBA NON FUNZIONA
                         {
-                            Console.WriteLine(bookvm.ToString());
+                            Console.WriteLine("This book doesn't exists.");
                         }
-                    } break;
+                        else
+                        {
+                            foreach (BookViewModel bookvm in results)
+                            {
+                                Console.WriteLine(bookvm.ToString());
+                                //Sarebbe carino qui mostrare i dati del BookWithAvailabilityVM con la firstAvailabilityDate4
+                            }
+                        }
+                    }
+                    break;
                 case "2":
                     {
+                        Console.WriteLine("  ");
                         Console.WriteLine("Enter the book's info you'd like to reserve");
                         Console.WriteLine("Title: ");
                         string title = Console.ReadLine();
@@ -285,7 +323,7 @@ namespace ConsoleApp.Library
                         while (string.IsNullOrEmpty(publisher))
                         { Console.WriteLine("\nPublisher cannot be empty. Reenter the publisher, please: "); }
                         SearchBookViewModel bookVMToSearch = new SearchBookViewModel(title, authorName, authorSurname, publisher);
-                        BookViewModel result = lbl.SearchBook(bookVMToSearch).SingleOrDefault(); 
+                        BookViewModel result = lbl.SearchBook(bookVMToSearch).SingleOrDefault();
 
                         if (result != null)
                         {
@@ -294,7 +332,7 @@ namespace ConsoleApp.Library
 
                             if (isThisBookAvailable.IsAvailable == true)
                             {
-                                ReservationViewModel resCreated  = lbl.ReserveBook(isThisBookAvailable.ID, user.ID);
+                                ReservationViewModel resCreated = lbl.ReserveBook(isThisBookAvailable.ID, user.ID);
                                 Console.WriteLine("You have reserved this book.");
                             }
                             else
@@ -310,30 +348,34 @@ namespace ConsoleApp.Library
                             Console.WriteLine("The book you requested doesn't exist. Sorry!");
                         }
 
-                    } break;
+                    }
+                    break;
                 case "3":
                     {
                         //Return a book
 
-                    }break;
+                    }
+                    break;
                 case "4":
                     {
                         //View Reservation History
 
-                    }break;
+                    }
+                    break;
                 default:
                     Console.WriteLine("Something went wrong.");
                     break;
             }
         }
 
-       public void SecondMenu()
+        public void SecondMenu()
         {
+            Console.WriteLine("  ");
             Console.WriteLine("Press '1' if you wish to quit the application, press '2' if you want to logout, press '3' for further operations");
             int quantity;
             while (!int.TryParse(Console.ReadLine(), out quantity))
             { Console.WriteLine("\nReenter the quantity, please: "); }
         }
-        
+
     }
 }
