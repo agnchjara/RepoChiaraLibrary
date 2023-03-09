@@ -22,5 +22,6 @@ namespace DataAccessLayer.Library
         Book UpdateBook(int bookId, Book bookWithNewValues);
         Reservation CreateReservation(Reservation reservation);
         List<Reservation> GetReservations();
+        bool DeleteReservation(Reservation reservation);
     }
 }

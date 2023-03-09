@@ -101,13 +101,22 @@ namespace BusinessLogic.Library
 
             return delete;
         }
-        public Reservation CreateReservation(ReservationViewModel reservationViewModel)
+        public ReservationViewModel ReserveBook(BookWithAvailabilityVM bookWavailability, UserViewModel userVM)
         {
-            Reservation reservation = ReservationMapper.MapViewModelToReservation(reservationViewModel);
+            List<Book> books = Repository.ReadAllBooks();
+            var fetchedBook = books.Where(x => x.ID == bookWavailability.ID).FirstOrDefault();
+
+            List<User> users = Repository.ReadAllUsers();
+            var fetchedUser = users.Where(x => x.ID == userVM.ID).FirstOrDefault();
+
+            Reservation reservation = new Reservation(0, fetchedBook, fetchedUser, DateTime.Now);
+            reservation.Book.ID = fetchedBook.ID;
+            reservation.User.ID = fetchedUser.ID;
+            //reservation.StartDate = DateTime.Now;
 
             #region Assegnazione ID Reservation + Diminuzione Book.Quantity -1 (PER XML)
             //List<Book> books = Repository.ReadAllBooks();
-            //Reservation reservation = ReservationMapper.MapViewModelToReservation(reservationViewModel);
+            //Reservation reservation = ReservationMapper.MapViewModelToReservation(reservation);
             //List<Reservation> fetchedReservations = Repository.GetReservations();
             //int querySetId = fetchedReservations.Select(r => r.ID).DefaultIfEmpty(0).Max() + 1;
             //reservation.ID = querySetId;
@@ -120,9 +129,21 @@ namespace BusinessLogic.Library
             //updateQuantityOfReservedBook.Quantity--;
             //Repository.UpdateBook(updateQuantityOfReservedBook.ID, updateQuantityOfReservedBook);
             #endregion
+            ReservationViewModel resVM = ReservationMapper.MapReservationToViewModel(Repository.CreateReservation(reservation));
 
-            return Repository.CreateReservation(reservation);
+            return resVM;
 
+        }
+        public bool ReturnBook(int bookId, int userId)
+        {
+            bool returnedBook = false;
+            List<Reservation> fetchedReservations = Repository.GetReservations();
+
+            //questa non va bene perché ci possono essere più record di prenotazione dello stesso libro da parte dello stesso utente 
+            Reservation match = fetchedReservations.Where(r => r.Book.ID == bookId && r.User.ID == userId).FirstOrDefault();
+            match.EndDate = DateTime.Now;
+
+            return returnedBook = Repository.DeleteReservation(match);
         }
         private List<Book> SearchBooks(SearchBookViewModel bookToSearch)
         {
@@ -171,12 +192,6 @@ namespace BusinessLogic.Library
                 BookViewModel b = BookMapper.MapBookToViewModel(book);
                 results.Add(b);
             }
-
-            //foreach (Book book in books)
-            //{
-            //    var bvm = BookMapper.MapBookToViewModel(book);
-            //    results.Add(bvm);
-            //}
 
 
             return results;
@@ -259,10 +274,22 @@ namespace BusinessLogic.Library
 
         public BookWithAvailabilityVM SearchBookWithAvailabilityInfos(BookViewModel bookToSearch)
         {
-            //Questa lista viene passata nel mapper per calcolare la FirstAvailabilityDate
-            List<Reservation> fetchedReservations = Repository.GetReservations();
+            //Questa lista viene passata nel mapper per controllare le prenotazioni attive su un libro
+            //List<Reservation> fetchedReservations = Repository.GetReservations();
 
-            BookWithAvailabilityVM bookWithAvailabilityInfos = BookMapper.BookViewModelToAvailability(bookToSearch, fetchedReservations);
+            List<Book> books = Repository.ReadAllBooks();
+            BookWithAvailabilityVM bookWithAvailabilityInfos = BookMapper.BookViewModelToAvailability(bookToSearch, books/*, fetchedReservations*/);
+
+            //if (fetchedReservations.Where(r => r.Book.ID == bookWithAvailabilityInfos.ID && r.StartDate > DateTime.Today)
+            //if ((fetchedReservations.Where(r => r.Book.ID == bookWithAvailabilityInfos.ID && r.EndDate > DateTime.Today).Count() >= bookWithAvailabilityInfos.Quantity) && bookWithAvailabilityInfos.IsDeleted != true)
+            //{
+            //    bookWithAvailabilityInfos.IsAvailable = false;
+            //    bookWithAvailabilityInfos.FirstAvailabilityDate = fetchedReservations.Where(r => r.Book.ID == bookWithAvailabilityInfos.ID && r.EndDate > DateTime.Today).OrderBy(r => r.EndDate).FirstOrDefault().EndDate;
+            //}
+            //else
+            //{
+            //    bookWithAvailabilityInfos.IsAvailable = true;
+            //}
 
             #region
             //if (fetchedReservations.Count > 0)
@@ -293,16 +320,7 @@ namespace BusinessLogic.Library
             return bookWithAvailabilityInfos;
         }
 
-        public ReservationViewModel ReserveBook(int bookId, int userId)
-        {
-            ReservationViewModel reservationViewModel = new ReservationViewModel();
-            reservationViewModel.Book.ID = bookId;
-            reservationViewModel.User.ID = userId;
 
-            Reservation resToCreate = CreateReservation(reservationViewModel);
-            ReservationViewModel resCreated = ReservationMapper.MapReservationToViewModel(resToCreate);
-            return resCreated;
-        }
 
     }
 }

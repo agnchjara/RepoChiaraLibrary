@@ -52,14 +52,14 @@ namespace ConsoleApp.Library
                     {
                         if (loggedInUser.Role == Role.Admin)
                         {
-                            Menu menuAdmin = new Menu(repository);
-                            menuAdmin.MenuAdmin(loggedInUser);
+                            MenuAdmin menuAdmin = new MenuAdmin(repository);
+                            menuAdmin.Menu(loggedInUser);
 
                         }
                         else
                         {
-                            Menu menuStandardUser = new Menu(repository);
-                            menuStandardUser.MenuStandardUser(loggedInUser, loggedInUser.Username);
+                            MenuStandardUser menuStandardUser = new MenuStandardUser(repository);
+                            menuStandardUser.Menu(loggedInUser, loggedInUser.Username);
                         }
 
                         

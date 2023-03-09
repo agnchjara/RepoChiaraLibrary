@@ -46,8 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMenu.cs" />
     <Compile Include="LoginUI.cs" />
-    <Compile Include="Menu.cs" />
+    <Compile Include="MenuStandardUser.cs" />
+    <Compile Include="MenuAdmin.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

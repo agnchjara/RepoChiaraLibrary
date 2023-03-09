@@ -10,7 +10,7 @@ IsDeleted BIT NOT NULL,
 
 CREATE TABLE Users(
 UserId INT IDENTITY(1, 1) PRIMARY KEY NOT NULL,
-UserRole NVARCHAR(5) NOT NULL CONSTRAINT userOrAdmin CHECK (UserRole='user' OR UserRole='admin'),
+UserRole NVARCHAR(12) NOT NULL CONSTRAINT userOrAdmin CHECK (UserRole='StandardUser' OR UserRole='Admin'),
 Username NVARCHAR(20) NOT NULL,
 Password VARCHAR(20) NOT NULL,
 )
@@ -29,6 +29,13 @@ DROP TABLE Reservations;
 DROP TABLE Books;
 DROP TABLE Users;
 
+INSERT INTO Users (UserRole, Username, Password) 
+Values ('Admin', 'administrator', 'admin1')
+INSERT INTO Users (UserRole, Username, Password) 
+Values ('StandardUser', 'bob', 'userBob')
+ INSERT INTO Users (UserRole, Username, Password) 
+Values ('StandardUser', 'alice', 'userAlice')
+
 INSERT INTO Books (Title, AuthorName, AuthorSurname, Publisher, Quantity, IsDeleted)
 values ('Harry Potter and the Philosophers Stone', 'J. K', 'Rowling', 'Bloomsbury', 1, 'false')
 
@@ -36,6 +43,25 @@ SELECT * FROM Books;
 UPDATE Books
 SET Title = concat ('Harry Potter and the Philosoper', char(39), 's Stone')
 where BookId = 1
+
+INSERT INTO Books (Title, AuthorName, AuthorSurname, Publisher, Quantity, IsDeleted)
+values ('Harry Potter and the Chamber of Secrets', 'J. K', 'Rowling', 'Bloomsbury', 2, 'false')
+
+INSERT INTO Books (Title, AuthorName, AuthorSurname, Publisher, Quantity, IsDeleted)
+values ('Harry Potter and the Prisoner of Azkaban', 'J. K', 'Rowling', 'Bloomsbury', 3, 'false')
+
+INSERT INTO Books (Title, AuthorName, AuthorSurname, Publisher, Quantity, IsDeleted)
+values ('Harry Potter and the Order of the Phoenix', 'J. K', 'Rowling', 'Bloomsbury', 5, 'false')
+
+INSERT INTO Books (Title, AuthorName, AuthorSurname, Publisher, Quantity, IsDeleted)
+values ('Le Rouge et le Noir', 'Henry Beyle', 'Stendhal', 'A. Levasseur', 4, 'false')
+
+INSERT INTO Books (Title, AuthorName, AuthorSurname, Publisher, Quantity, IsDeleted)
+values ('Call me by your name', 'André', 'Aciman', 'Farrar, Straus and Giroux', 9, 'false')
+
+INSERT INTO Books (Title, AuthorName, AuthorSurname, Publisher, Quantity, IsDeleted)
+values ('a', 'b', 'c', 'd', 1, 'false')
+
 
 -- stored procedure CreateBook
 CREATE PROCEDURE Books_up_CreateBook
@@ -91,6 +117,21 @@ WHERE ReservationId = @ReservationId
 UPDATE Books
 SET Quantity = (SELECT Quantity) + 1
 WHERE BookId = @BookId;
+
+-- stored procedure UpdateBook
+CREATE PROCEDURE up_UpdateBook
+@BookId INT,
+@Title NVARCHAR(350),
+@AuthorName NVARCHAR(200),
+@AuthorSurname NVARCHAR(200) ,
+@Publisher NVARCHAR(200),
+@Quantity INT,
+@IsDeleted BIT
+AS
+UPDATE Books
+SET Title = @Title, AuthorName = @AuthorName, AuthorSurname = @AuthorName, Publisher = @Publisher, Quantity = @Quantity, IsDeleted = @IsDeleted
+WHERE BookId = @BookId
+
 
 SELECT * FROM Books;
 DELETE FROM Books WHERE BookId = 8;

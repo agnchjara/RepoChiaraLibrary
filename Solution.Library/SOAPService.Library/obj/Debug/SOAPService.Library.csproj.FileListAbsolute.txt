@@ -1,0 +1,7 @@
+C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\bin\SOAPService.Library.dll.config
+C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\bin\SOAPService.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\bin\SOAPService.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\obj\Debug\SOAPService.Library.csproj.AssemblyReference.cache
+C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\obj\Debug\SOAPService.Library.csproj.CoreCompileInputs.cache
+C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\obj\Debug\SOAPService.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\obj\Debug\SOAPService.Library.pdb

@@ -64,20 +64,14 @@ namespace BusinessLogic.Library.Mappers
             return searchBookViewModel;
         }
 
-        public static BookWithAvailabilityVM BookViewModelToAvailability(BookViewModel bookViewModel, IEnumerable<Reservation> reservationList)
+        public static BookWithAvailabilityVM BookViewModelToAvailability(BookViewModel bookViewModel, List<Book> books/*, IEnumerable<Reservation> reservationList*/)
         {
             DateTime? firstAvailabilityDate = DateTime.Now;
 
             bool availability = true;
-
-            if ((reservationList.Where(r => r.Book.ID == bookViewModel.ID && r.EndDate > DateTime.Today).Count() >= bookViewModel.Quantity) && bookViewModel.IsDeleted != true)
+            if (books.Where(x => x.ID == bookViewModel.ID && x.Quantity == 0).Any())
             {
                 availability = false;
-                firstAvailabilityDate = reservationList.Where(r => r.Book.ID == bookViewModel.ID && r.EndDate > DateTime.Today).OrderBy(r => r.EndDate).FirstOrDefault().EndDate;
-            }
-            else 
-            {
-                availability = true;
             }
             
             BookWithAvailabilityVM vMbookWithAvailability = new BookWithAvailabilityVM()

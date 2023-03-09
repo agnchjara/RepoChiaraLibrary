@@ -67,5 +67,11 @@ namespace DataAccessLayer.Library
             return _IreservationDAO.CreateReservation(reservation);
         }
 
+        public bool DeleteReservation(Reservation reservation)
+        {
+            bool deleted = false;
+
+            return  deleted = _IreservationDAO.DeleteReservation(reservation);
+        }
     }
 }

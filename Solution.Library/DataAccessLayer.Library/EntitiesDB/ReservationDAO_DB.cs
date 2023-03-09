@@ -33,11 +33,11 @@ namespace DataAccessLayer.Library.EntitiesDB
                     userId.Value = reservation.User.ID;
                     cmd.Parameters.Add(userId);
 
-                    SqlParameter startDate = new SqlParameter("StartDate", System.Data.SqlDbType.Int);
+                    SqlParameter startDate = new SqlParameter("StartDate", System.Data.SqlDbType.DateTime);
                     startDate.Value = reservation.StartDate;
                     cmd.Parameters.Add(startDate);
 
-                    SqlParameter endDate = new SqlParameter("EndDate", System.Data.SqlDbType.Int);
+                    SqlParameter endDate = new SqlParameter("EndDate", System.Data.SqlDbType.DateTime);
                     endDate.Value = reservation.EndDate;
                     cmd.Parameters.Add(endDate);
 
@@ -50,7 +50,11 @@ namespace DataAccessLayer.Library.EntitiesDB
             }
             return reservation;
         }
-
+        /// <summary>
+        /// Questo metodo aggiorna la quantità del Boook e aggiorna la EndDate a Today 
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns></returns>
         public bool DeleteReservation(Reservation reservation)
         {
             bool deleted = true;
@@ -87,10 +91,8 @@ namespace DataAccessLayer.Library.EntitiesDB
                 {
                     cmd.Connection = conn;
                     //Testo della query : nome della stored Procedure
-                    cmd.CommandText = @"up_ReadAllReservations";
-                    //CommandType: tipo della stored procedure
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
+                    cmd.CommandText = "SELECT * FROM Reservations;";
+                   
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
@@ -106,7 +108,7 @@ namespace DataAccessLayer.Library.EntitiesDB
                         Reservation reservation = new Reservation(reservationId, book, user, startDate, endDate);
                         reservations.Add(reservation);
                     }
-                }
+                } conn.Close();
             }
             return reservations;
         }
