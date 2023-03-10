@@ -5,3 +5,10 @@ C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\obj\Debug\SOAPSe
 C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\obj\Debug\SOAPService.Library.csproj.CoreCompileInputs.cache
 C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\obj\Debug\SOAPService.Library.dll
 C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\obj\Debug\SOAPService.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\bin\BusinessLogic.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\bin\DataAccessLayer.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\bin\Model.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\bin\BusinessLogic.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\bin\DataAccessLayer.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\bin\Model.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\SOAPService.Library\obj\Debug\SOAPService.Library.csproj.CopyComplete

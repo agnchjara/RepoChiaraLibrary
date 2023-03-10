@@ -28,11 +28,7 @@ namespace DataAccessLayer.Library
             return _IuserDAO.ReadAllUsers();
         }
 
-        //public User Login(string username, string password, List<User> users)
-        //{
-        //    User _user = _IuserDAO.ReadUsernamePassword(username, password, users);
-        //    return _user;
-        //}
+
         public List<Book> ReadAllBooks()
         {
             return _IbookDAO.ReadAllBooks();
@@ -46,15 +42,12 @@ namespace DataAccessLayer.Library
 
         public bool DeleteBook(Book book)
         {
-            bool delete = false;
-            _IbookDAO.DeleteBook(book);
-            return delete = _IbookDAO.DeleteBook(book);
+            return _IbookDAO.DeleteBook(book);
         }
 
         public Book UpdateBook(int bookId, Book bookWithNewValues)
         {
-            _IbookDAO.UpdateBook(bookId, bookWithNewValues);
-            return bookWithNewValues; //controlla se va bene questo come tipo di return
+           return _IbookDAO.UpdateBook(bookId, bookWithNewValues);
         }
 
         public List<Reservation> GetReservations()
@@ -69,9 +62,7 @@ namespace DataAccessLayer.Library
 
         public bool DeleteReservation(Reservation reservation)
         {
-            bool deleted = false;
-
-            return  deleted = _IreservationDAO.DeleteReservation(reservation);
+            return _IreservationDAO.DeleteReservation(reservation);
         }
     }
 }

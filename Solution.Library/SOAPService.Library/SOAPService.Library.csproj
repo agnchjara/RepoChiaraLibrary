@@ -61,14 +61,14 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service1.svc" />
+    <Content Include="ServiceLibrary.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Service1.svc.cs">
-      <DependentUpon>Service1.svc</DependentUpon>
+    <Compile Include="ServiceLibrary.svc.cs">
+      <DependentUpon>ServiceLibrary.svc</DependentUpon>
     </Compile>
-    <Compile Include="IService1.cs" />
+    <Compile Include="IServiceLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +81,20 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic.Library\BusinessLogic.Library.csproj">
+      <Project>{F130DE58-806B-4EDE-8EED-4DCD011926D6}</Project>
+      <Name>BusinessLogic.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayer.Library\DataAccessLayer.Library.csproj">
+      <Project>{53D29E24-D83D-4DE2-9F45-F3BA42750375}</Project>
+      <Name>DataAccessLayer.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model.Library\Model.Library.csproj">
+      <Project>{047B2F72-7BE1-4962-844A-C8381A0E3CE9}</Project>
+      <Name>Model.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

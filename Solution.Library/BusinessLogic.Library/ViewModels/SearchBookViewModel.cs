@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BusinessLogic.Library.VieModels
 {
+    [DataContract]
     public class SearchBookViewModel
     {
         public string Title { get; set; }

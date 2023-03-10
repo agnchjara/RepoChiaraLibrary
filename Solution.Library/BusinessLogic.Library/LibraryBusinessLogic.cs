@@ -13,7 +13,7 @@ namespace BusinessLogic.Library
     public class LibraryBusinessLogic : ILibraryBusinessLogic
     {
         public IRepository Repository { get; set; }
-
+       
         public LibraryBusinessLogic(IRepository repository)
         {
             Repository = repository;
