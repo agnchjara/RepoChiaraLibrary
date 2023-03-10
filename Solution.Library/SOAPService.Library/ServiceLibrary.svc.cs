@@ -4,7 +4,9 @@ using BusinessLogic.Library.Mappers;
 using BusinessLogic.Library.VieModels;
 using BusinessLogic.Library.ViewModels;
 using DataAccessLayer.Library;
+using DataAccessLayer.Library.EntitiesDB;
 using Model.Library;
+using Model.Library.InterfacesDAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,20 +21,12 @@ namespace SOAPService.Library
     // NOTE: In order to launch WCF Test Client for testing this service, please select ServiceLibrary.svc or ServiceLibrary.svc.cs at the Solution Explorer and start debugging.
     public class ServiceLibrary : IServiceLibrary
     {
-        public IRepository Repository { get; set; }
-        public LibraryBusinessLogic lbl { get; set; }   
+        public static IBookDAO BookDAO = new BookDAO_DB();
+        public static IUserDAO UserDAO = new UserDAO_DB();
+        public static IReservationDAO reservationDAO = new ReservationDAO_DB();
+        public static IRepository repository = new Repository(BookDAO, UserDAO, reservationDAO);
+        public static LibraryBusinessLogic lbl = new LibraryBusinessLogic(repository);
 
-        public ServiceLibrary()
-        {
-
-        }
-        public ServiceLibrary(LibraryBusinessLogic lbl)
-        {
-            this.lbl = lbl;
-        }
-
-       
-        
         #region
         //public string GetData(int value)
         //{

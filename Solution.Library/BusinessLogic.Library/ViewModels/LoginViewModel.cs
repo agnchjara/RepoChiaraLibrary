@@ -10,7 +10,9 @@ namespace BusinessLogic.Library.ViewModels
     [DataContract]
     public class LoginViewModel
     {
+        [DataMember]
         public string Username { get; set; }
+        [DataMember]
         public string Password { get; set; }
     }
 }
