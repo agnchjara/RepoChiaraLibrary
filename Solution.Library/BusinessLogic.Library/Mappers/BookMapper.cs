@@ -64,16 +64,24 @@ namespace BusinessLogic.Library.Mappers
             return searchBookViewModel;
         }
 
-        public static BookWithAvailabilityVM BookViewModelToAvailability(BookViewModel bookViewModel, List<Book> books/*, IEnumerable<Reservation> reservationList*/)
+        public static BookWithAvailabilityVM BookViewModelToAvailability(BookViewModel bookViewModel, IEnumerable<Reservation> reservations_thisBook)
         {
             DateTime? firstAvailabilityDate = DateTime.Now;
-
             bool availability = true;
-            if (books.Where(x => x.ID == bookViewModel.ID && x.Quantity == 0).Any())
+            if (reservations_thisBook.Where(r => r.Book.ID == bookViewModel.ID && r.EndDate > DateTime.Today).Count() == bookViewModel.Quantity)
             {
                 availability = false;
+                if (availability == false)
+                {
+                    firstAvailabilityDate = reservations_thisBook.Where(r => r.Book.ID == bookViewModel.ID && r.EndDate > DateTime.Today).OrderBy(r => r.EndDate).FirstOrDefault().EndDate;
+                }
+            }
+            else
+            {
+                availability = true;
             }
             
+
             BookWithAvailabilityVM vMbookWithAvailability = new BookWithAvailabilityVM()
             {
                 ID = bookViewModel.ID,
@@ -83,13 +91,13 @@ namespace BusinessLogic.Library.Mappers
                 PublishingHouse = bookViewModel.PublishingHouse,
                 Quantity = bookViewModel.Quantity,
                 IsDeleted = bookViewModel.IsDeleted,
-                IsAvailable = availability, 
-                FirstAvailabilityDate = firstAvailabilityDate,
+                IsAvailable = availability,
+                FirstAvailabilityDate = firstAvailabilityDate
 
             };
             return vMbookWithAvailability;
         }
-        //reservationList.Where(r => r.Book.ID == bookViewModel.ID && r.EndDate < DateTime.Today).Count() < bookViewModel.Quantity
+        //reservations_thisBook.Where(r => r.Book.ID == bookViewModel.ID && r.EndDate < DateTime.Today).Count() < bookViewModel.Quantity
         //if IsAvailable == false, show EndDate > DateTime.Today()            
         //input of IsAvailable and FirstDate from Reservation
     }

@@ -76,7 +76,7 @@ AS
 INSERT INTO Books(Title, AuthorName, AuthorSurname, Publisher, Quantity, IsDeleted)
 VALUES(@Title, @AuthorName, @AuthorSurname, @Publisher, @Quantity, @IsDeleted)
 
--- stored procedure DetleteBook
+-- stored procedure DeleteBook
 CREATE PROCEDURE up_DeleteBook
 @BookId INT 
 AS
@@ -99,9 +99,9 @@ CREATE PROCEDURE up_CreateReservation
 AS
 INSERT INTO Reservations(BookId, UserId, StartDate, EndDate)
 VALUES (@BookId, @UserId, @StartDate, @EndDate)
-UPDATE Books
-SET Quantity = (SELECT Quantity) -1
-WHERE BookId = @BookId
+--UPDATE Books
+--SET Quantity = (SELECT Quantity) -1
+--WHERE BookId = @BookId
 GO
 
 -- stored procedure DeleteReservation
@@ -114,9 +114,9 @@ AS
 UPDATE Reservations
 SET EndDate = @EndDate
 WHERE ReservationId = @ReservationId
-UPDATE Books
-SET Quantity = (SELECT Quantity) + 1
-WHERE BookId = @BookId;
+--UPDATE Books
+--SET Quantity = (SELECT Quantity) + 1
+--WHERE BookId = @BookId;
 
 -- stored procedure UpdateBook
 CREATE PROCEDURE up_UpdateBook
@@ -140,7 +140,7 @@ DROP TABLE Reservations;
 DROP TABLE Books;
 DROP TABLE Users;
 
-BEGIN TRANSACTION                                                      
+BEGIN TRANSACTION                                                     
 DELETE FROM Books
 WHERE BookId = 6;
 ROLLBACK 

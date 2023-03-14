@@ -12,6 +12,6 @@ namespace Model.Library.InterfacesDAO
         Reservation CreateReservation(Reservation reservation);
         List<Reservation> ReadAllReservations();
         Reservation UpdateReservation();
-        bool DeleteReservation(Reservation reservation);
+        Reservation DeleteReservation(Reservation reservation);
     }
 }

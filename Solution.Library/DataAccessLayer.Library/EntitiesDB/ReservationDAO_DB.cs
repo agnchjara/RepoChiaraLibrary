@@ -55,9 +55,8 @@ namespace DataAccessLayer.Library.EntitiesDB
         /// </summary>
         /// <param name="reservation"></param>
         /// <returns></returns>
-        public bool DeleteReservation(Reservation reservation)
+        public Reservation DeleteReservation(Reservation reservation)
         {
-            bool deleted = true;
             using(SqlConnection conn = DBConnectionProva.GetSqlConnection())
             {
                 using(SqlCommand cmd = new SqlCommand())
@@ -74,12 +73,12 @@ namespace DataAccessLayer.Library.EntitiesDB
                     cmd.Parameters.Add(bookId);
 
                     SqlParameter endDate = new SqlParameter("EndDate", System.Data.SqlDbType.DateTime);
-                    endDate.Value = reservation.EndDate;   //da assegnare nella BL
+                    endDate.Value = reservation.EndDate;   //da assegnare nella BL nel metodo RETURNBOOK
                     cmd.Parameters.Add(endDate);
 
                 }
             }
-            return deleted;
+            return reservation;
         }
 
         public List<Reservation> ReadAllReservations()

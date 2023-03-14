@@ -36,8 +36,7 @@ namespace DataAccessLayer.Library
 
         public Book CreateBook(Book book)
         {
-            _IbookDAO.CreateBook(book);
-            return book;
+            return _IbookDAO.CreateBook(book);
         }
 
         public bool DeleteBook(Book book)
@@ -60,7 +59,7 @@ namespace DataAccessLayer.Library
             return _IreservationDAO.CreateReservation(reservation);
         }
 
-        public bool DeleteReservation(Reservation reservation)
+        public Reservation DeleteReservation(Reservation reservation)
         {
             return _IreservationDAO.DeleteReservation(reservation);
         }

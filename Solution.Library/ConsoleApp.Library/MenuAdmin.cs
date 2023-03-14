@@ -181,20 +181,26 @@ namespace ConsoleApp.Library
                         BookViewModel searchedBook = lbl.SearchBook(bookVMToSearch).FirstOrDefault();
                         if (searchedBook != null)
                         {
-                            //Valuta la disponibilità del libro. 
-                            BookWithAvailabilityVM isThisBookAvailable = lbl.SearchBookWithAvailabilityInfos(searchedBook);
-
-                            if (isThisBookAvailable.IsAvailable == true)
+                            //Valuta la disponibilità del libro. Qui controlla se l'utente ha una res attiva per quel libro
+                           
+                            bool isThisBookReservedFromTheUser = lbl.SearchActiveReservations_User(searchedBook, user);
+                            if (isThisBookReservedFromTheUser == false)
                             {
-                                ReservationViewModel resCreated = lbl.ReserveBook(isThisBookAvailable, user);
-                                Console.WriteLine("You have reserved this book.");
+                                BookWithAvailabilityVM bookAvailable = lbl.SearchBookWithAvailabilityInfos(searchedBook);
+                                if(bookAvailable != null)
+                                {
+                                    ReservationViewModel resCreated = lbl.ReserveBook(bookAvailable, user);
+                                    Console.WriteLine("You have reserved this book. Please, remember to bring it back in 30 days.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("The book is not available. The first availability date is " + bookAvailable.FirstAvailabilityDate + ".");
+                                }
                             }
                             else
                             {
-                                //1. Il libro ha già una disponibilità attiva dall'utente => reservation is not possible
-
-                                //2. Il libro non è disponibile.
-                                Console.WriteLine("The book is not available. The first availability date is " + isThisBookAvailable.FirstAvailabilityDate + ".");
+                                // Il libro ha già una disponibilità attiva dall'utente => reservation is not possible
+                                Console.WriteLine("You already have an active reservation for this book");
                             }
                         }
                         else
@@ -206,8 +212,35 @@ namespace ConsoleApp.Library
                     break;
                 case "6":
                     {
-                        //Restituzione di un libro
-
+                        Console.WriteLine("  ");
+                        Console.WriteLine("Enter the book's info you'd like to return. \nTitle: ");
+                        string title = Console.ReadLine();
+                        Console.WriteLine("Author First Name: ");
+                        string authorName = Console.ReadLine();
+                        Console.WriteLine("Author Surname: ");
+                        string authorSurname = Console.ReadLine();
+                        Console.WriteLine("Publishing house: ");
+                        string publisher = Console.ReadLine();
+                        SearchBookViewModel bookVMToSearch = new SearchBookViewModel(title, authorName, authorSurname, publisher);
+                        BookViewModel searchedBook = lbl.SearchBook(bookVMToSearch).FirstOrDefault();
+                        if (searchedBook != null)
+                        {
+                            //Qui controlla se l'utente ha una res attiva per quel libro
+                            bool isThisBookReservedFromTheUser = lbl.SearchActiveReservations_User(searchedBook, user);
+                            if (isThisBookReservedFromTheUser == true)
+                            {
+                                ReservationViewModel returnBook = lbl.ReturnBook(searchedBook, user);
+                                Console.WriteLine("Thank you. You successfully returned this book.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You already have an active reservation for this book");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Sorry, there is no such book.");
+                        }
                     }
                     break;
                 case "7":

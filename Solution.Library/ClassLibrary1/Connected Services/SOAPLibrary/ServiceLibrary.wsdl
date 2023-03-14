@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="ServiceLibrary" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:53069/ServiceLibrary.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:53069/ServiceLibrary.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:53069/ServiceLibrary.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.ViewModels" />
+      <xsd:import schemaLocation="http://localhost:53069/ServiceLibrary.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/BusinessLogic.Library" />
+      <xsd:import schemaLocation="http://localhost:53069/ServiceLibrary.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Model.Library" />
+      <xsd:import schemaLocation="http://localhost:53069/ServiceLibrary.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.VieModels" />
+      <xsd:import schemaLocation="http://localhost:53069/ServiceLibrary.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.Mappers" />
+      <xsd:import schemaLocation="http://localhost:53069/ServiceLibrary.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.Entities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceLibrary_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_AddBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddBook" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_AddBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_SearchBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchBook" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_SearchBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_UpdateBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBook" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_UpdateBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_DeleteBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBook" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_DeleteBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_ReserveBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReserveBook" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_ReserveBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReserveBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_ReturnBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnBook" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_ReturnBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_GetReservationHistoryForAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReservationHistoryForAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_GetReservationHistoryForAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReservationHistoryForAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_GetReservationsHistoryForStandardUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReservationsHistoryForStandardUser" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_GetReservationsHistoryForStandardUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReservationsHistoryForStandardUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_SearchBookWithAvailabilityInfos_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchBookWithAvailabilityInfos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_SearchBookWithAvailabilityInfos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchBookWithAvailabilityInfosResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceLibrary">
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLibrary/Login" message="tns:IServiceLibrary_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLibrary/LoginResponse" message="tns:IServiceLibrary_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLibrary/AddBook" message="tns:IServiceLibrary_AddBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLibrary/AddBookResponse" message="tns:IServiceLibrary_AddBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLibrary/SearchBook" message="tns:IServiceLibrary_SearchBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLibrary/SearchBookResponse" message="tns:IServiceLibrary_SearchBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLibrary/UpdateBook" message="tns:IServiceLibrary_UpdateBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLibrary/UpdateBookResponse" message="tns:IServiceLibrary_UpdateBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLibrary/DeleteBook" message="tns:IServiceLibrary_DeleteBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLibrary/DeleteBookResponse" message="tns:IServiceLibrary_DeleteBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReserveBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLibrary/ReserveBook" message="tns:IServiceLibrary_ReserveBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLibrary/ReserveBookResponse" message="tns:IServiceLibrary_ReserveBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLibrary/ReturnBook" message="tns:IServiceLibrary_ReturnBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLibrary/ReturnBookResponse" message="tns:IServiceLibrary_ReturnBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReservationHistoryForAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLibrary/GetReservationHistoryForAdmin" message="tns:IServiceLibrary_GetReservationHistoryForAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLibrary/GetReservationHistoryForAdminResponse" message="tns:IServiceLibrary_GetReservationHistoryForAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReservationsHistoryForStandardUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLibrary/GetReservationsHistoryForStandardUser" message="tns:IServiceLibrary_GetReservationsHistoryForStandardUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLibrary/GetReservationsHistoryForStandardUserResponse" message="tns:IServiceLibrary_GetReservationsHistoryForStandardUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchBookWithAvailabilityInfos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLibrary/SearchBookWithAvailabilityInfos" message="tns:IServiceLibrary_SearchBookWithAvailabilityInfos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLibrary/SearchBookWithAvailabilityInfosResponse" message="tns:IServiceLibrary_SearchBookWithAvailabilityInfos_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServiceLibrary" type="tns:IServiceLibrary">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IServiceLibrary/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddBook">
+      <soap:operation soapAction="http://tempuri.org/IServiceLibrary/AddBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBook">
+      <soap:operation soapAction="http://tempuri.org/IServiceLibrary/SearchBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBook">
+      <soap:operation soapAction="http://tempuri.org/IServiceLibrary/UpdateBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBook">
+      <soap:operation soapAction="http://tempuri.org/IServiceLibrary/DeleteBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReserveBook">
+      <soap:operation soapAction="http://tempuri.org/IServiceLibrary/ReserveBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnBook">
+      <soap:operation soapAction="http://tempuri.org/IServiceLibrary/ReturnBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReservationHistoryForAdmin">
+      <soap:operation soapAction="http://tempuri.org/IServiceLibrary/GetReservationHistoryForAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReservationsHistoryForStandardUser">
+      <soap:operation soapAction="http://tempuri.org/IServiceLibrary/GetReservationsHistoryForStandardUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBookWithAvailabilityInfos">
+      <soap:operation soapAction="http://tempuri.org/IServiceLibrary/SearchBookWithAvailabilityInfos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceLibrary">
+    <wsdl:port name="BasicHttpBinding_IServiceLibrary" binding="tns:BasicHttpBinding_IServiceLibrary">
+      <soap:address location="http://localhost:53069/ServiceLibrary.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

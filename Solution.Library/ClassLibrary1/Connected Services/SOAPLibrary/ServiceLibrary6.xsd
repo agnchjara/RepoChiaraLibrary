@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:53069/ServiceLibrary.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.ViewModels" />
+  <xs:import schemaLocation="http://localhost:53069/ServiceLibrary.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/BusinessLogic.Library" />
+  <xs:import schemaLocation="http://localhost:53069/ServiceLibrary.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Model.Library" />
+  <xs:import schemaLocation="http://localhost:53069/ServiceLibrary.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.VieModels" />
+  <xs:import schemaLocation="http://localhost:53069/ServiceLibrary.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.Mappers" />
+  <xs:import schemaLocation="http://localhost:53069/ServiceLibrary.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.Entities" />
+  <xs:element name="Login">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.ViewModels" minOccurs="0" name="loginVM" nillable="true" type="q1:LoginViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.ViewModels" minOccurs="0" name="LoginResult" nillable="true" type="q2:UserViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddBook">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/BusinessLogic.Library" minOccurs="0" name="book" nillable="true" type="q3:BookViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddBookResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Model.Library" minOccurs="0" name="AddBookResult" nillable="true" type="q4:Book" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchBook">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.VieModels" minOccurs="0" name="book" nillable="true" type="q5:SearchBookViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchBookResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/BusinessLogic.Library" minOccurs="0" name="SearchBookResult" nillable="true" type="q6:ArrayOfBookViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBook">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/BusinessLogic.Library" minOccurs="0" name="bookToSearch" nillable="true" type="q7:BookViewModel" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/BusinessLogic.Library" minOccurs="0" name="bookWithNewValues" nillable="true" type="q8:BookViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBookResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/BusinessLogic.Library" minOccurs="0" name="UpdateBookResult" nillable="true" type="q9:BookViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteBook">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/BusinessLogic.Library" minOccurs="0" name="book" nillable="true" type="q10:BookViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteBookResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteBookResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReserveBook">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.Mappers" minOccurs="0" name="book" nillable="true" type="q11:BookWithAvailabilityVM" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.ViewModels" minOccurs="0" name="user" nillable="true" type="q12:UserViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReserveBookResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/BusinessLogic.Library" minOccurs="0" name="ReserveBookResult" nillable="true" type="q13:ReservationViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReturnBook">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="bookId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReturnBookResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReturnBookResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReservationHistoryForAdmin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.ViewModels" minOccurs="0" name="userViewModel" nillable="true" type="q14:UserViewModel" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.VieModels" minOccurs="0" name="bookToReserve" nillable="true" type="q15:SearchBookViewModel" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.Entities" minOccurs="0" name="reservationStatus" nillable="true" type="q16:ReservationStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReservationHistoryForAdminResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/BusinessLogic.Library" minOccurs="0" name="GetReservationHistoryForAdminResult" nillable="true" type="q17:ArrayOfReservationViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReservationsHistoryForStandardUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.VieModels" minOccurs="0" name="bookToReserve" nillable="true" type="q18:SearchBookViewModel" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.Entities" minOccurs="0" name="reservationStatus" type="q19:ReservationStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReservationsHistoryForStandardUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/BusinessLogic.Library" minOccurs="0" name="GetReservationsHistoryForStandardUserResult" nillable="true" type="q20:ArrayOfReservationViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchBookWithAvailabilityInfos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/BusinessLogic.Library" minOccurs="0" name="book" nillable="true" type="q21:BookViewModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchBookWithAvailabilityInfosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/BusinessLogic.Library.Mappers" minOccurs="0" name="SearchBookWithAvailabilityInfosResult" nillable="true" type="q22:BookWithAvailabilityVM" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

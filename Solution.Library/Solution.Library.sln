@@ -15,6 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Tests", "Library.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOAPService.Library", "SOAPService.Library\SOAPService.Library.csproj", "{BBA92D40-04C8-4902-8B04-2B690223BCB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy.Library", "ClassLibrary1\Proxy.Library.csproj", "{E3620F3E-74DB-47E3-896A-B6089C4DD0F3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BBA92D40-04C8-4902-8B04-2B690223BCB8} = {BBA92D40-04C8-4902-8B04-2B690223BCB8}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +50,10 @@ Global
 		{BBA92D40-04C8-4902-8B04-2B690223BCB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBA92D40-04C8-4902-8B04-2B690223BCB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBA92D40-04C8-4902-8B04-2B690223BCB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3620F3E-74DB-47E3-896A-B6089C4DD0F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3620F3E-74DB-47E3-896A-B6089C4DD0F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3620F3E-74DB-47E3-896A-B6089C4DD0F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3620F3E-74DB-47E3-896A-B6089C4DD0F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

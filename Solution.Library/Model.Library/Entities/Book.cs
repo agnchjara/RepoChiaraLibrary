@@ -11,17 +11,23 @@ namespace Model.Library
     [DataContract]
     public class Book
     {
+        [DataMember]
         public int ID { get; set; }
+        [DataMember]
         public string Title { get; set; }
+        [DataMember]
         public string AuthorName { get; set; }
+        [DataMember]
         public string AuthorSurname { get; set; }
-        public string PublishingHouse { get; set; } 
+        [DataMember]
+        public string PublishingHouse { get; set; }
 
         /// <summary>
-        /// rappresenta il numero di duplicati disponibili per la prenotazione
+        /// Adesso rappresenta il numero di duplicati disponibili per la prenotazione
         /// </summary>
-        public int Quantity { get; set; } 
-
+        [DataMember]
+        public int Quantity { get; set; }
+        [DataMember]
         public bool IsDeleted = false;  
         public Book()
         {

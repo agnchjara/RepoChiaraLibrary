@@ -42,15 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookDAO.cs" />
+    <Compile Include="EntitiesXML\BookDAO.cs" />
     <Compile Include="EntitiesDB\BookDAO_DB.cs" />
     <Compile Include="EntitiesDB\DBConnectionProva.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
-    <Compile Include="ReservationDAO.cs" />
+    <Compile Include="EntitiesXML\ReservationDAO.cs" />
     <Compile Include="EntitiesDB\ReservationDAO_DB.cs" />
-    <Compile Include="UserDAO.cs" />
+    <Compile Include="EntitiesXML\UserDAO.cs" />
     <Compile Include="EntitiesDB\UserDAO_DB.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -93,7 +93,7 @@ namespace SOAPService.Library
 
         public BookViewModel UpdateBook(BookViewModel bookToSearch, BookViewModel bookWithNewValues)
         {
-            throw new NotImplementedException();
+            return lbl.UpdateBook(bookToSearch, bookWithNewValues);
         }
     }
 }

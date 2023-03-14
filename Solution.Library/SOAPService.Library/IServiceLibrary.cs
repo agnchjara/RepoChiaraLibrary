@@ -18,7 +18,6 @@ namespace SOAPService.Library
     [ServiceContract]
     public interface IServiceLibrary
     {
-
         [OperationContract]
         UserViewModel Login(LoginViewModel loginVM);
 

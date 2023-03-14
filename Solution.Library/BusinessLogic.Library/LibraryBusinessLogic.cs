@@ -12,8 +12,8 @@ namespace BusinessLogic.Library
 {
     public class LibraryBusinessLogic : ILibraryBusinessLogic
     {
-        public IRepository Repository { get; set; }
-       
+        private IRepository Repository { get; set; }
+
         public LibraryBusinessLogic(IRepository repository)
         {
             Repository = repository;
@@ -35,7 +35,7 @@ namespace BusinessLogic.Library
             }
 
         }
-        public User Login(string username, string password, List<User> users)
+        private User Login(string username, string password, List<User> users)
         {
             User userForLogin = users.Where(x => x.Username == username && x.Password == password).SingleOrDefault();
             return userForLogin;
@@ -44,11 +44,7 @@ namespace BusinessLogic.Library
         {
             SearchBookViewModel searchBookViewModel = BookMapper.BookVMToSearchBookVM(bookViewModelToAdd);
             List<BookViewModel> fetchedBooks = SearchBook(searchBookViewModel);
-            //List<Book> fetchAllBooks = Repository.ReadAllBooks();
-            //var fetchedBook = fetchAllBooks.FirstOrDefault(x => x.Title == book.Title &&
-            //    x.AuthorName == book.AuthorName &&
-            //    x.AuthorSurname == book.AuthorSurname
-            //    && x.PublishingHouse == book.PublishingHouse);
+
 
             if (fetchedBooks.Count() == 0)
             {
@@ -75,7 +71,7 @@ namespace BusinessLogic.Library
                     return book;
                 }
             }
-            
+
         }
         public BookViewModel UpdateBook(BookViewModel foundBook, BookViewModel bookWithNewValues)
         {
@@ -112,7 +108,6 @@ namespace BusinessLogic.Library
             Reservation reservation = new Reservation(0, fetchedBook, fetchedUser, DateTime.Now);
             reservation.Book.ID = fetchedBook.ID;
             reservation.User.ID = fetchedUser.ID;
-            //reservation.StartDate = DateTime.Now;
 
             #region Assegnazione ID Reservation + Diminuzione Book.Quantity -1 (PER XML)
             //List<Book> books = Repository.ReadAllBooks();
@@ -134,16 +129,15 @@ namespace BusinessLogic.Library
             return resVM;
 
         }
-        public bool ReturnBook(int bookId, int userId)
+        public ReservationViewModel ReturnBook(BookViewModel bookVM, UserViewModel userVM)
         {
-            bool returnedBook = false;
             List<Reservation> fetchedReservations = Repository.GetReservations();
 
             //questa non va bene perché ci possono essere più record di prenotazione dello stesso libro da parte dello stesso utente 
-            Reservation match = fetchedReservations.Where(r => r.Book.ID == bookId && r.User.ID == userId).FirstOrDefault();
+            Reservation match = fetchedReservations.Where(r => r.Book.ID == bookVM.ID && r.User.ID == userVM.ID).FirstOrDefault();
             match.EndDate = DateTime.Now;
 
-            return returnedBook = Repository.DeleteReservation(match);
+            return ReservationMapper.MapReservationToViewModel(Repository.DeleteReservation(match));
         }
         private List<Book> SearchBooks(SearchBookViewModel bookToSearch)
         {
@@ -272,13 +266,49 @@ namespace BusinessLogic.Library
             return result; //da passare anche questa al Program per farla stampare
         }
 
+        public bool SearchActiveReservations_User(BookViewModel bookViewModel, UserViewModel userViewModel)
+        {
+            bool availability = true;
+            List<Reservation> reservations = Repository.GetReservations();
+            List<Book> books = Repository.ReadAllBooks();
+            //Lista di Reservation del solo libro con l'ID corrispondente al libro cercato dall'utente
+            List<Reservation> reservations_thisBook = reservations.Where(r => r.Book.ID == bookViewModel.ID).ToList();
+            List<Reservation> reservations_thisBook_thisUser = reservations_thisBook.Where(r => r.User.ID == userViewModel.ID).ToList();
+            ////lista di reservations dello user specifico
+            //List<Reservation> reservations_user = reservations.Where(u => u.ID == res.User.ID).ToList();
+            //reservations in cui compare il book che cerchiamo 
+            //List<Reservation> reservations_thisUser_thisBook = reservations_user.Where(b => b.ID == isThisBookAvailable.ID).ToList();
+            if (reservations_thisBook_thisUser != null)
+            {
+                var check = reservations_thisBook_thisUser.Where(r => r.EndDate > DateTime.Today);
+                if (check != null)
+                {
+                    availability = false;
+                }
+                else
+                {
+                    availability = true;
+                }
+
+            }
+            else
+                throw new ArgumentNullException();
+
+            return availability;
+        }
+
         public BookWithAvailabilityVM SearchBookWithAvailabilityInfos(BookViewModel bookToSearch)
         {
-            //Questa lista viene passata nel mapper per controllare le prenotazioni attive su un libro
-            //List<Reservation> fetchedReservations = Repository.GetReservations();
 
+            //Da assegnare IsAvailable e FirstAvailabilityDate
+            List<Reservation> reservations = Repository.GetReservations();
             List<Book> books = Repository.ReadAllBooks();
-            BookWithAvailabilityVM bookWithAvailabilityInfos = BookMapper.BookViewModelToAvailability(bookToSearch, books/*, fetchedReservations*/);
+            //Linq per trovare l'ID del book che corrisponde al libro cercato 
+            Book isThisBookAvailable = books.Where(b => b.Title == bookToSearch.Title).FirstOrDefault();
+            //Lista di Reservation del solo libro con l'ID corrispondente al libro cercato dall'utente
+            List<Reservation> reservations_thisBook = reservations.Where(r => r.Book.ID == isThisBookAvailable.ID).ToList();
+
+            BookWithAvailabilityVM bookWithAvailabilityInfos = BookMapper.BookViewModelToAvailability(bookToSearch, reservations_thisBook);
 
             //if (fetchedReservations.Where(r => r.Book.ID == bookWithAvailabilityInfos.ID && r.StartDate > DateTime.Today)
             //if ((fetchedReservations.Where(r => r.Book.ID == bookWithAvailabilityInfos.ID && r.EndDate > DateTime.Today).Count() >= bookWithAvailabilityInfos.Quantity) && bookWithAvailabilityInfos.IsDeleted != true)
