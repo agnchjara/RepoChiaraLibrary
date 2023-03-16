@@ -11,9 +11,13 @@ namespace BusinessLogic.Library.ViewModels
     [DataContract]
     public class UserViewModel
     {
+        [DataMember]
         public int ID { get; set; }
+        [DataMember]
         public string Username { get; set; }
+        [DataMember]
         public string Password { get; set; }
+        [DataMember]
         public Role Role { get; set; }
     }
 

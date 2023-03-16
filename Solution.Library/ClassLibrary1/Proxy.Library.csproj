@@ -51,23 +51,33 @@
     <Compile Include="IBookProxy.cs" />
     <Compile Include="IReservationProxy.cs" />
     <Compile Include="IUserProxy.cs" />
+    <Compile Include="Mappers\Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceModels\BookServiceModel.cs" />
+    <Compile Include="ServiceModels\BookWithAvailabilityServiceModel.cs" />
+    <Compile Include="ServiceModels\LoginServiceModel.cs" />
+    <Compile Include="ServiceModels\ReservationServiceModel.cs" />
+    <Compile Include="ServiceModels\SearchBookServiceModel.cs" />
+    <Compile Include="ServiceModels\UserServiceModel.cs" />
     <Compile Include="WCF_BookProxy.cs" />
     <Compile Include="WCF_ReservationProxy.cs" />
     <Compile Include="WCF_UserProxy.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic.Library\BusinessLogic.Library.csproj">
-      <Project>{F130DE58-806B-4EDE-8EED-4DCD011926D6}</Project>
-      <Name>BusinessLogic.Library</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Connected Services\SOAPLibrary\Proxy.Library.SOAPLibrary.Book.datasource">
+    <None Include="Connected Services\SOAPLibrary\Proxy.Library.SOAPLibrary.BookViewModel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SOAPLibrary\Proxy.Library.SOAPLibrary.BookWithAvailabilityVM.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SOAPLibrary\Proxy.Library.SOAPLibrary.ReservationViewModel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SOAPLibrary\Proxy.Library.SOAPLibrary.UserViewModel.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\SOAPLibrary\ServiceLibrary.wsdl" />
@@ -99,6 +109,7 @@
     <None Include="Properties\DataSources\BusinessLogic.Library.Mappers.BookWithAvailabilityVM.datasource" />
     <None Include="Properties\DataSources\BusinessLogic.Library.ReservationViewModel.datasource" />
     <None Include="Properties\DataSources\BusinessLogic.Library.ViewModels.UserViewModel.datasource" />
+    <None Include="Properties\DataSources\Model.Library.Book.datasource" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\SOAPLibrary\" />
@@ -117,6 +128,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model.Library\Model.Library.csproj">
+      <Project>{047B2F72-7BE1-4962-844A-C8381A0E3CE9}</Project>
+      <Name>Model.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,7 +8,19 @@
   </xs:complexType>
   <xs:element name="LoginViewModel" nillable="true" type="tns:LoginViewModel" />
   <xs:complexType name="UserViewModel">
-    <xs:sequence />
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Role" type="tns:Role" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
   </xs:complexType>
   <xs:element name="UserViewModel" nillable="true" type="tns:UserViewModel" />
+  <xs:simpleType name="Role">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Admin" />
+      <xs:enumeration value="StandardUser" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Role" nillable="true" type="tns:Role" />
 </xs:schema>

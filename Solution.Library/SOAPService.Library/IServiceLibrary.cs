@@ -37,7 +37,7 @@ namespace SOAPService.Library
         ReservationViewModel ReserveBook(BookWithAvailabilityVM book, UserViewModel user);
 
         [OperationContract]
-        bool ReturnBook(int bookId, int userId);
+        ReservationViewModel ReturnBook(BookViewModel bookVM, UserViewModel userVM);
 
         [OperationContract]
         List<ReservationViewModel> GetReservationHistoryForAdmin(UserViewModel userViewModel, SearchBookViewModel bookToReserve, ReservationStatus? reservationStatus);
@@ -48,32 +48,8 @@ namespace SOAPService.Library
         [OperationContract]
         BookWithAvailabilityVM SearchBookWithAvailabilityInfos(BookViewModel book);
 
-       
-  
-
-        // TODO: Add your service operations here
+        [OperationContract]
+        bool SearchActiveReservations_User(BookViewModel bookViewModel, UserViewModel userViewModel);
     }
 
-
-    //// Use a data contract as illustrated in the sample below to add composite types to service operations.
-    //[DataContract]
-    //public class CompositeType
-    //{
-    //    bool boolValue = true;
-    //    string stringValue = "Hello ";
-
-    //    [DataMember]
-    //    public bool BoolValue
-    //    {
-    //        get { return boolValue; }
-    //        set { boolValue = value; }
-    //    }
-
-    //    [DataMember]
-    //    public string StringValue
-    //    {
-    //        get { return stringValue; }
-    //        set { stringValue = value; }
-    //    }
-    //}
 }

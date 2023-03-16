@@ -1,11 +1,7 @@
-﻿using BusinessLogic.Library;
-using BusinessLogic.Library.Entities;
-using BusinessLogic.Library.Mappers;
-using BusinessLogic.Library.VieModels;
-using BusinessLogic.Library.ViewModels;
-using DataAccessLayer.Library;
-using DataAccessLayer.Library.EntitiesDB;
-using Model.Library.InterfacesDAO;
+﻿
+
+using Proxy.Library;
+using Proxy.Library.ServiceModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +12,21 @@ namespace ConsoleApp.Library
     public class MenuStandardUser
     {
 
-        public static IBookDAO bookDAO = new BookDAO_DB();
-        public static IUserDAO userDAO = new UserDAO_DB();
-        public static IReservationDAO reservationDAO = new ReservationDAO_DB();
-        public static IRepository repository = new Repository(bookDAO, userDAO, reservationDAO);
-        public LibraryBusinessLogic lbl = new LibraryBusinessLogic(repository);
-        public MenuStandardUser(IRepository repository)
-        {
-            lbl = new LibraryBusinessLogic(repository);
-        }
+        //public static IBookDAO bookDAO = new BookDAO_DB();
+        //public static IUserDAO userDAO = new UserDAO_DB();
+        //public static IReservationDAO reservationDAO = new ReservationDAO_DB();
+        //public static IRepository repository = new Repository(bookDAO, userDAO, reservationDAO);
+        //public LibraryBusinessLogic lbl = new LibraryBusinessLogic(repository);
+        //public MenuStandardUser(IRepository repository)
+        //{
+        //    lbl = new LibraryBusinessLogic(repository);
+        //}
 
-        
-        public void Menu(UserViewModel user, string username)
+        IBookProxy bookProxy = new WCF_BookProxy();
+        IUserProxy userProxy = new WCF_UserProxy();
+        IReservationProxy reservationProxy = new WCF_ReservationProxy();
+
+        public void Menu(UserServiceModel user, string username)
         {
             Console.WriteLine("  ");
             Console.WriteLine("Hello " + username + ", what would you like to do?");
@@ -55,18 +54,18 @@ namespace ConsoleApp.Library
                         string authorSurname = Console.ReadLine();
                         Console.WriteLine("Publishing house: ");
                         string publisher = Console.ReadLine();
-                        SearchBookViewModel bookVMToSearch = new SearchBookViewModel(title, authorName, authorSurname, publisher);
-                        List<BookViewModel> results = lbl.SearchBook(bookVMToSearch);
+                        SearchBookServiceModel bookSMToSearch = new SearchBookServiceModel(title, authorName, authorSurname, publisher);
+                        List<BookServiceModel> results = bookProxy.SearchBook(bookSMToSearch);
                         if (results == null)  //STA ROBA NON FUNZIONA
                         {
                             Console.WriteLine("This book doesn't exists.");
                         }
                         else
                         {
-                            foreach (BookViewModel bookvm in results)
+                            foreach (BookServiceModel booksm in results)
                             {
-                                Console.WriteLine(bookvm.ToString());
-                                //Sarebbe carino qui mostrare i dati del BookWithAvailabilityVM con la firstAvailabilityDate4
+                                Console.WriteLine(booksm.ToString());
+                                //Sarebbe carino qui mostrare i dati del BookWithAvailabilityServiceModel con la firstAvailabilityDate4
                             }
                         }
                     }
@@ -91,17 +90,17 @@ namespace ConsoleApp.Library
                         string publisher = Console.ReadLine();
                         while (string.IsNullOrEmpty(publisher))
                         { Console.WriteLine("\nPublisher cannot be empty. Reenter the publisher, please: "); }
-                        SearchBookViewModel bookVMToSearch = new SearchBookViewModel(title, authorName, authorSurname, publisher);
-                        BookViewModel result = lbl.SearchBook(bookVMToSearch).SingleOrDefault();
+                        SearchBookServiceModel bookSMToSearch = new SearchBookServiceModel(title, authorName, authorSurname, publisher);
+                        BookServiceModel result = bookProxy.SearchBook(bookSMToSearch).SingleOrDefault();
 
                         if (result != null)
                         {
                             //Valuta la disponibilità del libro. 
-                            BookWithAvailabilityVM isThisBookAvailable = lbl.SearchBookWithAvailabilityInfos(result);
+                            BookWithAvailabilityServiceModel isThisBookAvailable = bookProxy.SearchBookWithAvailabilityInfos(result);
 
                             if (isThisBookAvailable.IsAvailable == true)
                             {
-                                ReservationViewModel resCreated = lbl.ReserveBook(isThisBookAvailable, user);
+                                ReservationServiceModel resCreated = reservationProxy.ReserveBook(isThisBookAvailable, user);
                                 Console.WriteLine("You have reserved this book.");
                             }
                             else

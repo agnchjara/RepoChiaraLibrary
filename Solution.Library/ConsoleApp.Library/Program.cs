@@ -1,9 +1,8 @@
-﻿using BusinessLogic.Library;
-using BusinessLogic.Library.ViewModels;
-using DataAccessLayer.Library;
-using DataAccessLayer.Library.EntitiesDB;
-using Model.Library.InterfacesDAO;
+﻿
+using Proxy.Library;
+using Proxy.Library.ServiceModels;
 using System;
+using System.Runtime.Remoting.Proxies;
 
 namespace ConsoleApp.Library
 {
@@ -11,11 +10,15 @@ namespace ConsoleApp.Library
     {
         static void Main(string[] args)
         {
-            IBookDAO BookDAO = new BookDAO_DB();
-            IUserDAO UserDAO = new UserDAO_DB();
-            IReservationDAO reservationDAO = new ReservationDAO_DB();
-            IRepository repository = new Repository(BookDAO, UserDAO, reservationDAO);
-            LibraryBusinessLogic libraryBL = new LibraryBusinessLogic(repository);
+            //IBookDAO BookDAO = new BookDAO_DB();
+            //IUserDAO UserDAO = new UserDAO_DB();
+            //IReservationDAO reservationDAO = new ReservationDAO_DB();
+            //IRepository repository = new Repository(BookDAO, UserDAO, reservationDAO);
+            //LibraryBusinessLogic libraryBL = new LibraryBusinessLogic(repository);
+
+            IBookProxy bookProxy = new WCF_BookProxy();
+            IUserProxy userProxy = new WCF_UserProxy();
+            IReservationProxy reservationProxy = new WCF_ReservationProxy();
 
             bool endApp = false;
             do
@@ -37,14 +40,14 @@ namespace ConsoleApp.Library
                 string userUsername = Console.ReadLine();
                 Console.WriteLine("Password: ");
                 string userPassword = Console.ReadLine();
-                LoginViewModel loginVM = new LoginViewModel()
+                LoginServiceModel loginSM = new LoginServiceModel()
                 {
                     Username = userUsername,
                     Password = userPassword
                 };
 
                 
-                UserViewModel loggedInUser = libraryBL.Login(loginVM);
+                UserServiceModel loggedInUser = userProxy.Login(loginSM);
                 if (loggedInUser != null)
                 {
                     LoginUI.SuccessfulLogin();
@@ -52,19 +55,19 @@ namespace ConsoleApp.Library
                     {
                         if (loggedInUser.Role == Role.Admin)
                         {
-                            MenuAdmin menuAdmin = new MenuAdmin(repository);
+                            MenuAdmin menuAdmin = new MenuAdmin(/*repository*/);
                             menuAdmin.Menu(loggedInUser);
 
                         }
                         else
                         {
-                            MenuStandardUser menuStandardUser = new MenuStandardUser(repository);
+                            MenuStandardUser menuStandardUser = new MenuStandardUser(/*repository*/);
                             menuStandardUser.Menu(loggedInUser, loggedInUser.Username);
                         }
 
                         
                     } while (endApp == false);
-                    //endApp = true;
+                    
                 }
                 else
                 {

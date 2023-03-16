@@ -57,9 +57,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic.Library\BusinessLogic.Library.csproj">
-      <Project>{f130de58-806b-4ede-8eed-4dcd011926d6}</Project>
-      <Name>BusinessLogic.Library</Name>
+    <ProjectReference Include="..\ClassLibrary1\Proxy.Library.csproj">
+      <Project>{E3620F3E-74DB-47E3-896A-B6089C4DD0F3}</Project>
+      <Name>Proxy.Library</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataAccessLayer.Library\DataAccessLayer.Library.csproj">
       <Project>{53d29e24-d83d-4de2-9f45-f3ba42750375}</Project>

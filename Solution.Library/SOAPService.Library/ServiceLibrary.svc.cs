@@ -76,9 +76,14 @@ namespace SOAPService.Library
             return lbl.ReserveBook(book, user);
         }
 
-        public bool ReturnBook(int bookId, int userId)
+        public ReservationViewModel ReturnBook(BookViewModel bookVM, UserViewModel userVM)
         {
-            return lbl.ReturnBook(bookId, userId);  
+            return lbl.ReturnBook(bookVM, userVM);  
+        }
+
+        public bool SearchActiveReservations_User(BookViewModel bookViewModel, UserViewModel userViewModel)
+        {
+            return lbl.SearchActiveReservations_User(bookViewModel, userViewModel);
         }
 
         public List<BookViewModel> SearchBook(SearchBookViewModel book)

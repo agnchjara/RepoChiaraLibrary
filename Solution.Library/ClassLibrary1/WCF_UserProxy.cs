@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Library.ViewModels;
+﻿using Proxy.Library.Mappers;
+using Proxy.Library.ServiceModels;
 using Proxy.Library.SOAPLibrary;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,12 @@ namespace Proxy.Library
 {
     public class WCF_UserProxy : IUserProxy
     {
-        public UserViewModel Login(LoginViewModel loginVM)
+        public UserServiceModel Login(LoginServiceModel loginSM)
         {
-            ServiceLibraryClient serviceLibraryClient = new ServiceLibraryClient();
-            return serviceLibraryClient.Login(loginVM);
+            ServiceLibraryClient slc = new ServiceLibraryClient();
+            LoginViewModel loginVM = Mapper.MapLoginServiceModelToLoginViewModel(loginSM);
+            UserViewModel userVM = slc.Login(loginVM);
+            return Mapper.MapUserViewModelToUserServiceModel(userVM);
         }
     }
 }

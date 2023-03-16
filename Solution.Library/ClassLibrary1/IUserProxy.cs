@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Library.ViewModels;
+﻿using Proxy.Library.ServiceModels;
+using Proxy.Library.SOAPLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Proxy.Library
 {
     public interface IUserProxy
     {
-        UserViewModel Login(LoginViewModel loginVM);
+        UserServiceModel Login(LoginServiceModel loginVM);
     }
 }

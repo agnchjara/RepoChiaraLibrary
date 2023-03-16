@@ -1,7 +1,5 @@
-﻿using BusinessLogic.Library;
-using BusinessLogic.Library.Mappers;
-using BusinessLogic.Library.VieModels;
-using BusinessLogic.Library.ViewModels;
+﻿using Model.Library;
+using Proxy.Library.ServiceModels;
 using Proxy.Library.SOAPLibrary;
 using System;
 using System.Collections.Generic;
@@ -13,16 +11,16 @@ namespace Proxy.Library
 {
     public interface IBookProxy
     {
-        Book AddBook(BookViewModel book);
+        Book AddBook(BookServiceModel book);
 
-        BookViewModel UpdateBook(BookViewModel bookToSearch, BookViewModel bookWithNewValues);
+        BookServiceModel UpdateBook(BookServiceModel bookToSearch, BookServiceModel bookWithNewValues);
 
-        bool DeleteBook(BookViewModel book);
+        bool DeleteBook(BookServiceModel book);
 
-        ReservationViewModel ReserveBook(BookWithAvailabilityVM book, UserViewModel user);
+        ReservationServiceModel ReserveBook(BookWithAvailabilityServiceModel book, UserServiceModel user);
 
-        List<BookViewModel> SearchBook(SearchBookViewModel book);     //DONE
+        List<BookServiceModel> SearchBook(SearchBookServiceModel book);   
 
-        BookWithAvailabilityVM SearchBookWithAvailabilityInfos(BookViewModel book);
+        BookWithAvailabilityServiceModel SearchBookWithAvailabilityInfos(BookServiceModel book);
     }
 }

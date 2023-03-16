@@ -24,10 +24,11 @@ C:\Users\chiara.agnello\Desktop\materiale.studio\ProgettoBiblioteca\Solution.Lib
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\ConsoleApp.Library.exe.config
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\ConsoleApp.Library.exe
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\ConsoleApp.Library.pdb
-C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\BusinessLogic.Library.dll
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\DataAccessLayer.Library.dll
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Model.Library.dll
-C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\BusinessLogic.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Proxy.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Proxy.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Proxy.Library.dll.config
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\DataAccessLayer.Library.pdb
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Model.Library.pdb
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.csproj.AssemblyReference.cache

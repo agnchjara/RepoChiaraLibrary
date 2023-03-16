@@ -1,8 +1,7 @@
 ﻿
-using BusinessLogic.Library;
-using BusinessLogic.Library.Mappers;
-using BusinessLogic.Library.VieModels;
-using BusinessLogic.Library.ViewModels;
+using Model.Library;
+using Proxy.Library.Mappers;
+using Proxy.Library.ServiceModels;
 using Proxy.Library.SOAPLibrary;
 using System;
 using System.Collections.Generic;
@@ -15,40 +14,50 @@ namespace Proxy.Library
 {
     public class WCF_BookProxy : IBookProxy
     {
-        public Book AddBook(BookViewModel book)
+        ServiceLibraryClient slc = new ServiceLibraryClient();
+
+        public Book AddBook(BookServiceModel book)
         {
-            ServiceLibraryClient serviceLibraryClient = new ServiceLibraryClient();
-            return serviceLibraryClient.AddBook(book);
+            return slc.AddBook(Mapper.MapBookServiceModeltoViewModel(book));
         }
 
-        public bool DeleteBook(BookViewModel book)
+        public bool DeleteBook(BookServiceModel book)
         {
-            ServiceLibraryClient serviceLibraryClient= new ServiceLibraryClient();
-            return serviceLibraryClient.DeleteBook(book);
+            return slc.DeleteBook(Mapper.MapBookServiceModeltoViewModel(book));
         }
 
-        public ReservationViewModel ReserveBook(BookWithAvailabilityVM book, UserViewModel user)
+        public ReservationServiceModel ReserveBook(BookWithAvailabilityServiceModel book, UserServiceModel user)
         {
-            ServiceLibraryClient serviceLibraryClient = new ServiceLibraryClient();
-            return serviceLibraryClient.ReserveBook(book, user);    
+            BookWithAvailabilityVM b = Mapper.MapBookWAvailabilityServiceModelToViewModel(book);
+            UserViewModel u  = Mapper.MapUserServiceModelToUserViewModel(user);
+            var x = slc.ReserveBook(b, u);
+            return Mapper.MapReservationViewModelToReservationServiceModel(x);
         }
 
-        public List<BookViewModel> SearchBook(SearchBookViewModel book)
+        public List<BookServiceModel> SearchBook(SearchBookServiceModel book)
         {
-            ServiceLibraryClient serviceLibraryClient = new ServiceLibraryClient(); 
-            return serviceLibraryClient.SearchBook(book);
+            List<BookViewModel> books = slc.SearchBook(Mapper.MapSearchBookServiceModelToServiceBookViewModel(book));
+            List<BookServiceModel> result = new List<BookServiceModel>();
+            foreach(BookViewModel bookViewModel in books)
+            {
+                var x = Mapper.MapBookViewModeltoServiceModel(bookViewModel);
+                result.Add(x);
+            }
+            return result;
         }
 
-        public BookWithAvailabilityVM SearchBookWithAvailabilityInfos(BookViewModel book)
+        public BookWithAvailabilityServiceModel SearchBookWithAvailabilityInfos(BookServiceModel book)
         {
-            ServiceLibraryClient serviceLibraryClient = new ServiceLibraryClient();
-            return serviceLibraryClient.SearchBookWithAvailabilityInfos(book);
+            var b = slc.SearchBookWithAvailabilityInfos(Mapper.MapBookServiceModeltoViewModel(book));
+            return Mapper.MapBookWAvailabilityToServiceModel(b);
         }
 
-        public BookViewModel UpdateBook(BookViewModel bookToSearch, BookViewModel bookWithNewValues)
+        public BookServiceModel UpdateBook(BookServiceModel bookToSearch, BookServiceModel bookWithNewValues)
         {
-            ServiceLibraryClient serviceLibraryClient = new ServiceLibraryClient();
-            return serviceLibraryClient.UpdateBook(bookToSearch, bookWithNewValues);
+            BookViewModel book1 = Mapper.MapBookServiceModeltoViewModel(bookToSearch);
+            BookViewModel newBook = Mapper.MapBookServiceModeltoViewModel(bookWithNewValues);
+            slc.UpdateBook(book1, newBook);
+            return bookWithNewValues;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,14 +10,22 @@ namespace BusinessLogic.Library
     /// <summary>
     /// E' il Book come lo può vedere l'utente, non con tutte le informazioni
     /// </summary>
+    [DataContract]
     public class BookViewModel
     {
+        [DataMember]
         public int ID { get; set; }
+        [DataMember]
         public string Title { get; set; }
+        [DataMember]
         public string AuthorName { get; set; }
+        [DataMember]
         public string AuthorSurname { get; set; }
+        [DataMember]
         public string PublishingHouse { get; set; }
+        [DataMember]
         public int Quantity { get; set; }
+        [DataMember]
         public bool IsDeleted { get; set; }
 
         #region Costruttori

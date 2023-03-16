@@ -35,7 +35,7 @@ namespace DataAccessLayer.Library
             return reservation;
         }
 
-        public bool DeleteReservation(Reservation reservation)
+        public Reservation DeleteReservation(Reservation reservation)
         {
             //XDocument doc = XDocument.Load(xmlFilePath);
             //var library = doc.Root.Element("Reservations");

@@ -72,6 +72,12 @@
   <wsdl:message name="IServiceLibrary_SearchBookWithAvailabilityInfos_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchBookWithAvailabilityInfosResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceLibrary_SearchActiveReservations_User_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchActiveReservations_User" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLibrary_SearchActiveReservations_User_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchActiveReservations_UserResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceLibrary">
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceLibrary/Login" message="tns:IServiceLibrary_Login_InputMessage" />
@@ -112,6 +118,10 @@
     <wsdl:operation name="SearchBookWithAvailabilityInfos">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceLibrary/SearchBookWithAvailabilityInfos" message="tns:IServiceLibrary_SearchBookWithAvailabilityInfos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceLibrary/SearchBookWithAvailabilityInfosResponse" message="tns:IServiceLibrary_SearchBookWithAvailabilityInfos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchActiveReservations_User">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceLibrary/SearchActiveReservations_User" message="tns:IServiceLibrary_SearchActiveReservations_User_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceLibrary/SearchActiveReservations_UserResponse" message="tns:IServiceLibrary_SearchActiveReservations_User_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceLibrary" type="tns:IServiceLibrary">
@@ -199,6 +209,15 @@
     </wsdl:operation>
     <wsdl:operation name="SearchBookWithAvailabilityInfos">
       <soap:operation soapAction="http://tempuri.org/IServiceLibrary/SearchBookWithAvailabilityInfos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchActiveReservations_User">
+      <soap:operation soapAction="http://tempuri.org/IServiceLibrary/SearchActiveReservations_User" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
