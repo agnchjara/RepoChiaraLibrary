@@ -34,23 +34,23 @@ namespace BusinessLogic.Library
 
         }
 
-        public BookViewModel(string title, string authorName, string authorSurname, string publishingHouse)
-        {
-            Title = title;
-            AuthorName = authorName;
-            AuthorSurname = authorSurname;
-            PublishingHouse = publishingHouse;
+        //public BookViewModel(string title, string authorName, string authorSurname, string publishingHouse)
+        //{
+        //    Title = title;
+        //    AuthorName = authorName;
+        //    AuthorSurname = authorSurname;
+        //    PublishingHouse = publishingHouse;
 
-        }
-        public BookViewModel(string title, string authorName, string authorSurname, string publishingHouse, int quantity)
-        {
-            Title = title;
-            AuthorName = authorName;
-            AuthorSurname = authorSurname;
-            PublishingHouse = publishingHouse;
-            Quantity = quantity;
+        //}
+        //public BookViewModel(string title, string authorName, string authorSurname, string publishingHouse, int quantity)
+        //{
+        //    Title = title;
+        //    AuthorName = authorName;
+        //    AuthorSurname = authorSurname;
+        //    PublishingHouse = publishingHouse;
+        //    Quantity = quantity;
 
-        }
+        //}
         #endregion
         public override string ToString()
         {
