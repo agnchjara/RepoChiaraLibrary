@@ -8,3 +8,5 @@ C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\obj\Debug\Proxy.Librar
 C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\obj\Debug\Proxy.Library.csproj.CopyComplete
 C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\obj\Debug\Proxy.Library.dll
 C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\obj\Debug\Proxy.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\bin\Debug\Newtonsoft.Json.xml

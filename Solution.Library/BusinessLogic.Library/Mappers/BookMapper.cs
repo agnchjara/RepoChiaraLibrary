@@ -20,6 +20,7 @@ namespace BusinessLogic.Library.Mappers
                 AuthorName = book.AuthorName,
                 AuthorSurname = book.AuthorSurname,
                 PublishingHouse = book.PublishingHouse,
+                Quantity = book.Quantity,   
             };
             return bookViewModel;
         }

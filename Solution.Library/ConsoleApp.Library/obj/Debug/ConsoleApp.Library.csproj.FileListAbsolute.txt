@@ -37,3 +37,5 @@ C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\obj\Debug\Console
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.csproj.CopyComplete
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.exe
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Newtonsoft.Json.xml

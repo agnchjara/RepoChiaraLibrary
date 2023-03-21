@@ -10,15 +10,23 @@ namespace ConsoleApp.Library
     {
         static void Main(string[] args)
         {
+            #region DAOInterfaces
             //IBookDAO BookDAO = new BookDAO_DB();
             //IUserDAO UserDAO = new UserDAO_DB();
             //IReservationDAO reservationDAO = new ReservationDAO_DB();
             //IRepository repository = new Repository(BookDAO, UserDAO, reservationDAO);
             //LibraryBusinessLogic libraryBL = new LibraryBusinessLogic(repository);
+            #endregion
 
-            IBookProxy bookProxy = new WCF_BookProxy();
-            IUserProxy userProxy = new WCF_UserProxy();
-            IReservationProxy reservationProxy = new WCF_ReservationProxy();
+            #region WCF SOAP
+            //IBookProxy bookProxy = new WCF_BookProxy();
+            //IUserProxy userProxy = new WCF_UserProxy();
+            //IReservationProxy reservationProxy = new WCF_ReservationProxy();
+            #endregion
+
+            IBookProxy bookProxy = new API_BookProxy();
+            IUserProxy userProxy = new API_UserProxy();
+            IReservationProxy reservationProxy = new API_ReservationProxy();
 
             bool endApp = false;
             do

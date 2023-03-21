@@ -67,3 +67,7 @@ C:\Users\Public\RepoChiara\Solution.Library\API.Library\obj\Debug\API.Library.cs
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\obj\Debug\API.Library.csproj.CopyComplete
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\obj\Debug\API.Library.dll
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\obj\Debug\API.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\BusinessLogic.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\DataAccessLayer.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\BusinessLogic.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\DataAccessLayer.Library.pdb
