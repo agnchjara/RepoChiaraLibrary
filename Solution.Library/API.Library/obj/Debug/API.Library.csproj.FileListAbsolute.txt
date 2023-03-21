@@ -71,3 +71,6 @@ C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\BusinessLogic.Librar
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\DataAccessLayer.Library.dll
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\BusinessLogic.Library.pdb
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\DataAccessLayer.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\Swashbuckle.Core.dll
+C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\WebActivatorEx.dll

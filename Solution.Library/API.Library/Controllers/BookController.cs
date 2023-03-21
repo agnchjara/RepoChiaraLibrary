@@ -1,4 +1,5 @@
 ﻿using BusinessLogic.Library;
+using BusinessLogic.Library.Mappers;
 using BusinessLogic.Library.VieModels;
 using DataAccessLayer.Library;
 using DataAccessLayer.Library.EntitiesDB;
@@ -36,34 +37,54 @@ namespace API.Library.Controllers
             return fetchedbooks;
         }
 
-        // GET: api/Book/5
-        public string Get(int id)
+        // POST: api/Book/SearchBookWithAvailabilityInfos
+        [HttpPost]
+        [Route("api/Book/SearchBookWithAvailabilityInfos")]
+        public BookWithAvailabilityVM SearchBookWithAvailabilityInfos([FromBody] BookViewModel book)
         {
-            return "value";
+            return lbl.SearchBookWithAvailabilityInfos(book);
         }
 
         // POST: api/Book
-        public void Post([FromBody] string value)
+        [HttpPost]
+        [Route("api/Book/AddBook")]
+        public Book AddBook([FromBody] BookViewModel book)
         {
-
-            //istanzio la bl e chiamo il metodo
+             return lbl.AddBook(book);
         }
 
         [HttpPost]
-        [Route("api/Book/Search")]
-        public void Search([FromBody] Book book)
+        [Route("api/Book/SearchBook")]
+        public List<BookViewModel> Search([FromBody] SearchBookViewModel book)
         {
-            //var lbl = new LibraryBusinessLogic()
+            return lbl.SearchBook(book);
         }
 
-        // PUT: api/Book/5
-        public void Put(int id, [FromBody] string value)
+        // POST: api/Book/
+        [HttpPost]
+        [Route("api/Book/UpdateBook")]
+        public BookViewModel Update([FromBody] BookViewModel bookToSearch, BookViewModel bookWithNewValues)
         {
+            return lbl.UpdateBook(bookToSearch, bookWithNewValues);
         }
 
-        // DELETE: api/Book/5
-        public void Delete(int id)
+        // DELETE: api/Book/Delete
+        [HttpDelete]
+        [Route("api/Book/DeleteBook")]
+        public bool Delete([FromBody] BookViewModel book)
         {
+            return lbl.DeleteBook(book);    
         }
+        
+
+       
+
+       
+
+       
+
+   
+
+        
     }
 }

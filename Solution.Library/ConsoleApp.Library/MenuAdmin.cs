@@ -25,9 +25,9 @@ namespace ConsoleApp.Library
         //    lbl = new LibraryBusinessLogic(repository);
         //}
 
-        IBookProxy bookProxy = new WCF_BookProxy();
-        IUserProxy userProxy = new WCF_UserProxy();
-        IReservationProxy reservationProxy = new WCF_ReservationProxy();
+        IBookProxy bookProxy = new API_BookProxy();
+        IUserProxy userProxy = new API_UserProxy();
+        IReservationProxy reservationProxy = new API_ReservationProxy();
 
         public void Menu(UserServiceModel user)
         {
