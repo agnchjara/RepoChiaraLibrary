@@ -18,7 +18,7 @@ namespace Proxy.Library
             string stringLoginVM = JsonConvert.SerializeObject(loginVM);
             StringContent content = new StringContent(stringLoginVM);
             HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("http://localhost:44364/api/");
+            httpClient.BaseAddress = new Uri("http://localhost/API.Library/api/");
             //quando si chiama questo metodo parte la request
             var response = httpClient.PostAsync($"User/Login", content).Result;
             if (response.IsSuccessStatusCode)

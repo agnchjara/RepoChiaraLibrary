@@ -27,15 +27,15 @@ C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Console
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\DataAccessLayer.Library.dll
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Model.Library.dll
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Proxy.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Proxy.Library.pdb
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Proxy.Library.dll.config
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\DataAccessLayer.Library.pdb
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Model.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.csproj.AssemblyReference.cache
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.csproj.SuggestedBindingRedirects.cache
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.csproj.CoreCompileInputs.cache
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.csproj.CopyComplete
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.exe
 C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\obj\Debug\ConsoleApp.Library.pdb
-C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Public\RepoChiara\Solution.Library\ConsoleApp.Library\bin\Debug\Newtonsoft.Json.xml

@@ -20,7 +20,7 @@ namespace Proxy.Library
             StringContent content = new StringContent(serializedBook);
             Book _book = new Book();
             HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("http://localhost:44364/api/");
+            httpClient.BaseAddress = new Uri("http://localhost/API.Library/api/");
             //quando si chiama questo metodo parte la request
             HttpResponseMessage response = httpClient.PostAsync($"Book?title={book.Title}&authorName={book.AuthorName}&" +
                 $"authorSurname={book.AuthorSurname}&publishingHouse={book.PublishingHouse}", content).Result;
@@ -52,7 +52,7 @@ namespace Proxy.Library
         {
             List<BookServiceModel> list = new List<BookServiceModel>();
             HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("http://localhost:44364/api/");
+            httpClient.BaseAddress = new Uri("http://localhost/API.Library/api/");
             //quando si chiama questo metodo parte la request
             var response = httpClient.GetAsync($"Book?title={book.Title}&authorName={book.AuthorName}&authorSurname={book.AuthorSurname}&publishingHouse={book.PublishingHouse}").Result;
             if(response.IsSuccessStatusCode)
@@ -86,7 +86,7 @@ namespace Proxy.Library
 
             BookServiceModel _book = new BookServiceModel();
             HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("http://localhost:44364/api/");
+            httpClient.BaseAddress = new Uri("http://localhost/API.Library/api/");
             //quando si chiama questo metodo parte la request
             HttpResponseMessage response = httpClient.PostAsync($"Book?title={bookToSearch.Title}&authorName={bookToSearch.AuthorName}&" +
                 $"authorSurname={bookToSearch.AuthorSurname}&publishingHouse={bookToSearch.PublishingHouse}&quantity={bookToSearch.Quantity}&isDeleted={bookToSearch.IsDeleted}", content2).Result;

@@ -2,11 +2,11 @@ C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\bin\Debug\Proxy.Librar
 C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\bin\Debug\Proxy.Library.dll
 C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\bin\Debug\Proxy.Library.pdb
 C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\bin\Debug\Model.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\bin\Debug\Model.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\obj\Debug\Proxy.Library.csproj.AssemblyReference.cache
 C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\obj\Debug\Proxy.Library.csproj.CoreCompileInputs.cache
 C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\obj\Debug\Proxy.Library.csproj.CopyComplete
 C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\obj\Debug\Proxy.Library.dll
 C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\obj\Debug\Proxy.Library.pdb
-C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Public\RepoChiara\Solution.Library\ClassLibrary1\bin\Debug\Newtonsoft.Json.xml

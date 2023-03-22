@@ -50,12 +50,16 @@ C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\roslyn\vbc.exe.confi
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\roslyn\vbc.rsp
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\roslyn\VBCSCompiler.exe
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\BusinessLogic.Library.dll
+C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\DataAccessLayer.Library.dll
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\Model.Library.dll
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\Newtonsoft.Json.dll
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\System.Net.Http.Formatting.dll
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\System.Web.Http.dll
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\System.Web.Http.WebHost.dll
+C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\BusinessLogic.Library.pdb
+C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\DataAccessLayer.Library.pdb
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\Model.Library.pdb
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\Newtonsoft.Json.xml
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\System.Net.Http.Formatting.xml
@@ -67,10 +71,3 @@ C:\Users\Public\RepoChiara\Solution.Library\API.Library\obj\Debug\API.Library.cs
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\obj\Debug\API.Library.csproj.CopyComplete
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\obj\Debug\API.Library.dll
 C:\Users\Public\RepoChiara\Solution.Library\API.Library\obj\Debug\API.Library.pdb
-C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\BusinessLogic.Library.dll
-C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\DataAccessLayer.Library.dll
-C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\BusinessLogic.Library.pdb
-C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\DataAccessLayer.Library.pdb
-C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\Swashbuckle.Core.dll
-C:\Users\Public\RepoChiara\Solution.Library\API.Library\bin\WebActivatorEx.dll
